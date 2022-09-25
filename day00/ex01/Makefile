@@ -4,7 +4,7 @@ CC = c++
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = 
+SRC = main.cpp commands.cpp
 
 all : $(NAME)
 
