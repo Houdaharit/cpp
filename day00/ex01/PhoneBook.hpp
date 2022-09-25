@@ -16,9 +16,11 @@ class Contact
 
 class	PhoneBook
 {
-	Contact	contacts[8];
+	public:
+		Contact	contacts[8];
+		int	max;
 };
 
 Contact	add(void);
-
+void	display_PB(PhoneBook);
 # endif
