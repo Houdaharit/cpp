@@ -22,5 +22,5 @@ class	PhoneBook
 };
 
 Contact	add(void);
-void	display_PB(PhoneBook);
+void	display_pb(PhoneBook);
 # endif

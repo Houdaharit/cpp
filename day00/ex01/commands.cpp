@@ -23,7 +23,7 @@ void	display_contact(Contact contact)
 	std::cout << contact.phone_num << "             ";
 }
 
-void	display_PB(PhoneBook pb)
+void	display_pb(PhoneBook pb)
 {
 	int	i;
 
