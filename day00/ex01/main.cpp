@@ -2,11 +2,13 @@
 
 int main()
 {
-	PhoneBook PB;
-	Contact	contact = add();
-	PB.max = 0;
-	PB.contacts[0] = contact;
-	PB.max++;
-	display_PB(PB);
+	char	*command;
+
+	command = NULL;
+	std::cin >> command;
+	if (!strcmp(command, "EXIT"))
+		return (0);
+	else
+		std::cout << "YES!";
 	return (0);
 }

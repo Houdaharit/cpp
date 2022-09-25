@@ -13,8 +13,6 @@ Contact	add()
 	std::cout << "Phone number: ";
 	std::cin >> contact.phone_num;
 	return (contact);
-/*	std::cout << "Darkest secret: ";
-	std::cin >> contact.dark_secret;*/
 }
 
 void	display_contact(Contact contact)
@@ -30,10 +28,14 @@ void	display_PB(PhoneBook pb)
 	int	i;
 
 	i = 0;
+	std::cout << "Index:          ";
 	std::cout << "First Name:     ";
 	std::cout << "Last Name:      ";
 	std::cout << "Nickname:       ";
 	std::cout << "Phone Number:   " << std::endl;
 	while (i < pb.max)
+	{
+		std::cout << i << "       ";
 		display_contact(pb.contacts[i++]);
+	}
 }
