@@ -15,6 +15,5 @@ class	Zombie
 	}
 };
 
-Zombie	*newZombie(std::string);
-void	randomChump(std::string);
+Zombie	*zombieHorde(int, std::string);
 #endif
