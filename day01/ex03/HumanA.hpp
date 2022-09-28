@@ -5,11 +5,11 @@
 
 class HumanA
 {
-	Weapon		weapon;
+	Weapon		*weapon;
 	std::string	name;
 	public:
 	HumanA();
-	HumanA(std::string, Weapon);
+	HumanA(std::string, Weapon&);
 	void attack();
 };
 

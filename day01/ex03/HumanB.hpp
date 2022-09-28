@@ -5,13 +5,13 @@
 
 class HumanB
 {
-	Weapon	weapon;
+	Weapon		*weapon;
 	std::string	name;
 	public:
 	HumanB();
-	HumanB(std::string name);
+	HumanB(std::string);
 	void attack(void);
-	void setWeapon(Weapon Weapon);
+	void setWeapon(Weapon&);
 };
 
 # endif
