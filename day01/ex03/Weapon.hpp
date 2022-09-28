@@ -4,9 +4,11 @@
 
 class Weapon
 {
-	string	type;
+	std::string	type;
 	public:
-	getType(void);
-	setType(std::string);
+	Weapon();
+	Weapon(std::string type);
+	std::string	getType(void);
+	void		setType(std::string);
 };
 # endif
