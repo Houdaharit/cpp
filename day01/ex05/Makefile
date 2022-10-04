@@ -9,7 +9,7 @@ SRC = main.cpp Harl.cpp
 all : $(NAME)
 
 $(NAME) : $(SRC)
-	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
+	$(CC) $(SRC) -o $(NAME)
 
 clean:
 	rm -rf $(NAME)

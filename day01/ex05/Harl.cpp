@@ -1,5 +1,13 @@
 #include "Harl.hpp"
 
+Harl::Harl()
+{
+}
+
+Harl::~Harl()
+{
+}
+
 void	Harl::debug(void)
 {
 	std::cout << "I love having extra bacon for\
@@ -30,4 +38,15 @@ void	Harl::error(void)
 {
 	std::cout << "This is unacceptable! I want to speak to the manager now.";
 	std::cout << std::endl;
+}
+
+void	comment(Harl *harl, void(Harl::*fct)(void))
+{
+	(harl->*fct)();
+}
+
+void	Harl::complain(std::string level)
+{
+	Harl	harl;
+	comment(&harl, &Harl::level);
 }
