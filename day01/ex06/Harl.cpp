@@ -32,7 +32,7 @@ void	Harl::error(void)
 	std::cout << std::endl;
 }
 
-void    Harl::filter(const char *complain)
+void    Harl::filter(std::string complain)
 {
     Harl    harl;
     int     res;

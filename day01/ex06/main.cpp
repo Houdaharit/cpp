@@ -1,14 +1,14 @@
 #include "Harl.hpp"
 
-int	cmp(const char *complain)
+int	cmp(std::string complain)
 {
-	if (!strcmp(complain, "debug"))
+	if (complain == "debug" || complain == "DEBUG")
 		return 1;
-	if (!strcmp(complain, "info"))
+	if (complain == "info" || complain == "INFO")
 		return 2;
-	if (!strcmp(complain, "warning"))
+	if (complain == "warning" || complain == "WARNING")
 		return 3;
-	if (!strcmp(complain, "error"))
+	if (complain == "error" || complain == "ERROR")
 		return 4;
 	return (0);
 }
@@ -23,5 +23,6 @@ int main(int argc, char **argv)
 		std::cout << "debug\tinfo\twarning\terror";
 		return (1);
 	}
-	harl.filter((const char *)argv[1]);
+	std::string	str(argv[1]);
+	harl.filter(str);
 }
