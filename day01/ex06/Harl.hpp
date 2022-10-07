@@ -15,6 +15,5 @@ class Harl
 	void filter(std::string complain);
 };
 
-void	comment(Harl *harl, void(Harl::*fct)(void));
 int		cmp(std::string complain);
 #endif
