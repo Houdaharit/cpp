@@ -13,6 +13,7 @@ class Contact
 	public:
 	void	add(void);
 	void	display_contact(void);
+	void	display_contact_endl();
 };
 
 class	PhoneBook
