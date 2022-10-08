@@ -1,25 +1,28 @@
 #include "PhoneBook.hpp"
 
+int	check_cmd(std::string cmd)
+{
+	if (cmd == "ADD" || cmd == "add")
+		return 1;
+	else if (cmd == "search" || cmd == "SEARCH")
+		return 1;
+	return 0;
+}
+
 int main()
 {
-	PhoneBook	pb;
-	std::string	command;
-	int		i;
+	PhoneBook	phonebook;
+	std::string	cmd;
 
-	i = 0;
-	std::cin >> command;
-	while (command != "EXIT")
+	std::cout << "Enter command: ";
+	std::cin >> cmd;
+	while (cmd != "exit" && cmd != "EXIT")
 	{
-		if (command == "ADD")
-		{
-			if (pb.max < 8)
-				pb.contacts[i++] = add();
-			else
-				pb.contacts[7] = add();
-		}
-		else if (command == "SEARCH")
-			display_pb(pb);
-		std::cin >> command;
+		if (check_cmd(cmd))
+			phonebook.command(cmd);
+		std::cout << "Enter command: ";
+		std::cin >> cmd;
 	}
 	return (0);
+
 }

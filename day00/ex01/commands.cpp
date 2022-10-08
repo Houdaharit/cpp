@@ -1,29 +1,27 @@
 #include "PhoneBook.hpp"
 
-Contact	add()
+void	Contact::add()
 {
-	Contact	contact;
 
 	std::cout << "First name: ";
-	std::cin >> contact.first_name;
+	std::cin >> first_name;
 	std::cout << "Last name: ";
-	std::cin >> contact.last_name;
+	std::cin >> last_name;
 	std::cout << "Nickname: ";
-	std::cin >> contact.nickname;
+	std::cin >> nickname;
 	std::cout << "Phone number: ";
-	std::cin >> contact.phone_num;
-	return (contact);
+	std::cin >> phone_num;
 }
 
-void	display_contact(Contact contact)
+void	Contact::display_contact(void)
 {
-	std::cout << contact.first_name << "            ";
-	std::cout << contact.last_name << "            ";
-	std::cout << contact.nickname << "            ";
-	std::cout << contact.phone_num << "             ";
+	std::cout << first_name << "\t";
+	std::cout << last_name << "\t";
+	std::cout << nickname << "\t";
+	std::cout << phone_num << "\t";
 }
 
-void	display_pb(PhoneBook pb)
+void	PhoneBook::display_pb()
 {
 	int	i;
 
@@ -33,9 +31,23 @@ void	display_pb(PhoneBook pb)
 	std::cout << "Last Name:      ";
 	std::cout << "Nickname:       ";
 	std::cout << "Phone Number:   " << std::endl;
-	while (i < pb.max)
+	while (i < max)
 	{
 		std::cout << i << "       ";
-		display_contact(pb.contacts[i++]);
+		contacts[i++].display_contact();
+	}
+}
+
+void	PhoneBook::command(std::string cmd)
+{
+	int	i;
+
+	i = 0;
+	if (cmd == "ADD" || cmd == "add")
+	{
+		if (max < 8)
+			contacts[i++].add();
+		else
+			contacts[7].add();
 	}
 }

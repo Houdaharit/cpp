@@ -5,22 +5,23 @@
 
 class Contact
 {
+	std::string	first_name;
+	std::string	last_name;
+	std::string	nickname;
+	std::string	phone_num;
+	std::string	dark_secret;
 	public:
-		std::string	first_name;
-		std::string	last_name;
-		std::string	nickname;
-		std::string	phone_num;
-	private:
-		std::string	dark_secret;
+	void	add(void);
+	void	display_contact(void);
 };
 
 class	PhoneBook
 {
+	Contact	contacts[8];
 	public:
-		Contact	contacts[8];
-		int	max;
+	int	max;
+	void	display_pb(void);
+	void	command(std::string);
 };
 
-Contact	add(void);
-void	display_pb(PhoneBook);
 # endif
