@@ -12,10 +12,12 @@ class ClapTrap
 
 	public:
 	ClapTrap();
-	ClapTrap(std::string, unsigned int, unsigned int, unsigned int);
+	ClapTrap(std::string);
 	ClapTrap(ClapTrap&);
 	~ClapTrap();
 	void	attack(const std::string&);
 	void	takeDamage(unsigned int);
 	void	beRepaired(unsigned int);
-}
+};
+
+#endif
