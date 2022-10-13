@@ -9,10 +9,7 @@ class	Zombie
 	Zombie();
 	Zombie(std::string);
 	~Zombie();
-	void	announce(void)
-	{
-		std::cout << name << ": BraiiiiiiinnnzzzZ...\n";
-	}
+	void	announce(void);
 };
 
 Zombie	*newZombie(std::string);
