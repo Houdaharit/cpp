@@ -9,11 +9,9 @@ class	Zombie
 	Zombie();
 	Zombie(std::string);
 	~Zombie();
-	void	announce(void)
-	{
-		std::cout << name << ": BraiiiiiiinnnzzzZ...\n";
-	}
-};
+	void	announce(void);
+	void	set_name(std::string);
+	};
 
 Zombie	*zombieHorde(int, std::string);
 #endif
