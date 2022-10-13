@@ -1,8 +1,8 @@
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main()
 {
-	FragTrap harry("Harry");
-	harry.highFivesGuys();
+	DiamondTrap harry("Harry");
 	harry.attack("bob");
+	harry.whoAmI();
 }

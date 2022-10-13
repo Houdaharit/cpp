@@ -1,10 +1,10 @@
-NAME = fragtrap
+NAME = diamondtrap
 
 CC = c++
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -Wshadow -Wno-shadow -std=c++98
 
-SRC = main.cpp FragTrap.cpp ClapTrap.cpp
+SRC = main.cpp FragTrap.cpp ClapTrap.cpp ScavTrap.cpp DiamondTrap.cpp
 
 all: $(NAME)
 

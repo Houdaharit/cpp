@@ -19,6 +19,10 @@ class ClapTrap
 	void	attack(const std::string&);
 	void	takeDamage(unsigned int);
 	void	beRepaired(unsigned int);
+	std::string get_name(void)
+	{
+		return name;
+	}
 };
 
 #endif

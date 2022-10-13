@@ -3,7 +3,7 @@
 FragTrap::FragTrap()
 {
 	std::cout << "FragTrap constructor called!" << std::endl;
-	name = "";
+	name = "Rachid";
 	hit_points = 100;
 	energy_points = 100;
 	attack_damage = 30;
