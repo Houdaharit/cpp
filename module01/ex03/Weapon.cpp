@@ -18,5 +18,7 @@ Weapon::Weapon(std::string type)
 
 std::string	Weapon::getType()
 {
-	return (type);
+	const std::string &Rtype = type;
+
+	return (Rtype);
 }

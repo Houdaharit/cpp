@@ -5,7 +5,7 @@
 
 class HumanB
 {
-	Weapon		*weapon;
+	Weapon	*weapon;
 	std::string	name;
 	public:
 	HumanB();
