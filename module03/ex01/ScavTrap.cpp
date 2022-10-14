@@ -27,6 +27,18 @@ ScavTrap::ScavTrap(ScavTrap& scavtrap)
 	attack_damage = scavtrap.attack_damage;
 }
 
+ScavTrap& ScavTrap::operator = (const ScavTrap& scavtrap)
+{
+	if (this != &scavtrap)
+	{
+		name = scavtrap.name;
+		hit_points = scavtrap.hit_points;
+		energy_points = scavtrap.energy_points;
+		attack_damage = scavtrap.attack_damage;
+	}
+	return (*this);
+}
+
 ScavTrap::~ScavTrap()
 {
 	std::cout << "ScavTrap destructor called" << std::endl;

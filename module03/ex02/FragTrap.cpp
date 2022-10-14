@@ -28,6 +28,18 @@ FragTrap::FragTrap(const std::string name)
 
 }
 
+FragTrap& FragTrap::operator = (const FragTrap& fragtrap)
+{
+	if (this != &fragtrap)
+	{
+		name = fragtrap.name;
+		hit_points = fragtrap.hit_points;
+		energy_points = fragtrap.energy_points;
+		attack_damage = fragtrap.attack_damage;
+	}
+	return (*this);
+}
+
 FragTrap::~FragTrap()
 {
 	std::cout << "FragTrap destructor called!" << std::endl;

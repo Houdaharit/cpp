@@ -2,7 +2,7 @@
 
 ClapTrap::ClapTrap()
 {
-	std::cout << "ClapTrap constructor called!" << std::endl;
+	std::cout << "ClapTrap constructor called" << std::endl;
 	name = "";
 	hit_points = 10;
 	energy_points = 10;
@@ -11,7 +11,7 @@ ClapTrap::ClapTrap()
 
 ClapTrap::ClapTrap(std::string name)
 {
-	std::cout << "ClapTrap constractor called!" << std::endl;
+	std::cout << "ClapTrap constractor called" << std::endl;
 	this->name = name;
 	hit_points = 10;
 	energy_points = 10;
@@ -21,16 +21,28 @@ ClapTrap::ClapTrap(std::string name)
 
 ClapTrap::ClapTrap(ClapTrap& claptrap)
 {
-	std::cout << "ClapTrap copy constructor called!" << std::endl;
+	std::cout << "ClapTrap copy constructor called" << std::endl;
 	name = claptrap.name;
 	hit_points = claptrap.hit_points;
 	energy_points = claptrap.energy_points;
 	attack_damage = claptrap.attack_damage;
 }
 
+ClapTrap& ClapTrap::operator = (const ClapTrap& claptrap)
+{
+	if (this != &claptrap)
+	{
+		name = claptrap.name;
+		hit_points = claptrap.hit_points;
+		energy_points = claptrap.energy_points;
+		attack_damage = claptrap.attack_damage;
+	}
+	return (*this);
+}
+
 ClapTrap::~ClapTrap()
 {
-	std::cout << "ClapTrap destructor called!" << std::endl;
+	std::cout << "ClapTrap destructor called" << std::endl;
 }
 
 void	ClapTrap::attack(const std::string& target)
