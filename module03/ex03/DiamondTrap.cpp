@@ -21,11 +21,23 @@ DiamondTrap::DiamondTrap(const std::string& name)
 
 DiamondTrap::DiamondTrap(DiamondTrap& diamond)
 {
-    std::cout << "DiamondTrap copy constructor called!" << std::endl;
-    name = diamond.name;
+	std::cout << "DiamondTrap copy constructor called!" << std::endl;
+	name = diamond.name;
 	hit_points = diamond.hit_points;
-    energy_points = diamond.energy_points;
-    attack_damage = diamond.attack_damage;
+	energy_points = diamond.energy_points;
+	attack_damage = diamond.attack_damage;
+}
+
+DiamondTrap& DiamondTrap::operator = (const DiamondTrap& diamond)
+{
+	if (this != &diamond)
+	{
+		name = diamond.name;
+		hit_points = diamond.hit_points;
+		energy_points = diamond.energy_points;
+		attack_damage = diamond.attack_damage;
+	}
+	return (*this);
 }
 
 DiamondTrap::~DiamondTrap()
