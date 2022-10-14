@@ -4,7 +4,7 @@ CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp Aminal.cpp Dog.cpp Cat.cpp
+SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp
 
 all: $(NAME)
 
@@ -16,4 +16,4 @@ clean:
 
 fclean: clean
 
-re: fclean re
+re: fclean all
