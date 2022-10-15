@@ -12,7 +12,7 @@ Animal::Animal(const std::string& type)
 	this->type = type;
 }
 
-Animal::Animal(Animal& animal)
+Animal::Animal(const Animal& animal)
 {
 	std::cout << "Animal constructor called!" << std::endl;
 	type = animal.type;

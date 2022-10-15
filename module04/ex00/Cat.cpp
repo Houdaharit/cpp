@@ -12,7 +12,7 @@ Cat::Cat(const std::string& type)
 	this->type = type;
 }
 
-Cat::Cat(Cat& cat)
+Cat::Cat(const Cat& cat)
 {
 	std::cout << "Cat constructor is called!" << std::endl;
 	type = cat.type;

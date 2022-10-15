@@ -7,7 +7,7 @@ class Dog : public Animal
 	public:
 		Dog();
 		Dog(const std::string&);
-		Dog(Dog&);
+		Dog(const Dog&);
 		Dog& operator = (const Dog&);
 		~Dog();
 		void makeSound();

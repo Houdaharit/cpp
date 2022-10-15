@@ -12,7 +12,7 @@ Dog::Dog(const std::string& type)
 	this->type = type;
 }
 
-Dog::Dog(Dog& dog)
+Dog::Dog(const Dog& dog)
 {
 	std::cout << "Dog constructor called!" << std::endl;
 	type = dog.type;
