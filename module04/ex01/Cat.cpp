@@ -4,13 +4,14 @@ Cat::Cat()
 {
 	std::cout << "Cat constructor is called!" << std::endl;
 	type = "cat";
-	brain = NULL;
+	brain = new Brain();
 }
 
 Cat::Cat(const std::string& type)
 {
 	std::cout << "Cat constructor is called!" << std::endl;
 	this->type = type;
+	brain = new Brain();
 }
 
 Cat::Cat(const Cat& cat)

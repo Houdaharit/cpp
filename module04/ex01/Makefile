@@ -1,14 +1,14 @@
-NAME = brain
+NAME = animal
 
 CC = c++
 
-CFLAGS = -Wall -Wextra -Werror - std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = Animal.cpp Dog.cpp Cat.cpp Brain.cpp
+SRC = main.cpp Brain.cpp Animal.cpp Dog.cpp Cat.cpp
 
-all : $(NAME)
+all: $(NAME)
 
-$(SRC) : $(NAME)
+$(NAME) : $(SRC)
 	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
 
 clean:

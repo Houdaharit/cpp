@@ -3,14 +3,14 @@
 Dog::Dog()
 {
 	type = "dog";
-	brain = NULL;
+	brain = new brain();
 	std::cout << "Dog constructor called!" << std::endl;
 }
 
 Dog::Dog(const std::string& type)
 {
 	std::cout << "Dog constructor called!" << std::endl;
-	brain = NULL;
+	brain = new Brain(;
 	this->type = type;
 }
 
