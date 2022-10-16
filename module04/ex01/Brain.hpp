@@ -2,10 +2,10 @@
 # define BRAIN_HPP
 # include <iostream>
 
-class Brain()
+class Brain
 {
 	protected:
-		std::string *ideas = new std::string[100];
+		std::string ideas[100];
 	public:
 		Brain();
 		Brain(const std::string*);
