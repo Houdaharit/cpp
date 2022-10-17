@@ -3,6 +3,8 @@
 
 int main()
 {
-	const Animal *animal = new Cat();
+	Cat cat;
+	const Animal *animal = &cat;
 	animal->makeSound();
+	return 0;
 }
