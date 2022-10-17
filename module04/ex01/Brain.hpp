@@ -8,9 +8,10 @@ class Brain
 		std::string ideas[100];
 	public:
 		Brain();
-		Brain(const std::string*);
+		Brain(const std::string[]);
 		Brain(const Brain&);
 		Brain& operator = (const Brain&);
 		~Brain();
+		void set_idea(int, const std::string &);
 };
 #endif

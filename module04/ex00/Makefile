@@ -2,7 +2,7 @@ NAME = animal
 
 CC = c++
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Werror -std=c++98
 
 SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp
 

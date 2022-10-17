@@ -31,6 +31,12 @@ Cat& Cat::operator = (const Cat& cat)
 	return (*this);
 }
 
+Cat::~Cat()
+{
+	std::cout << "Cat destructor called!" << std::endl;
+	delete brain;
+}
+
 void	Cat::makeSound(void) const
 {
 	std::cout << "Cat is meowing!" << std::endl;

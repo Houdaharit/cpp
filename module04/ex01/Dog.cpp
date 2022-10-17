@@ -3,14 +3,14 @@
 Dog::Dog()
 {
 	type = "dog";
-	brain = new brain();
+	brain = new Brain();
 	std::cout << "Dog constructor called!" << std::endl;
 }
 
 Dog::Dog(const std::string& type)
 {
 	std::cout << "Dog constructor called!" << std::endl;
-	brain = new Brain(;
+	brain = new Brain();
 	this->type = type;
 }
 
@@ -33,6 +33,8 @@ Dog& Dog::operator = (const Dog& dog)
 
 Dog::~Dog()
 {
+	std::cout << "Dog destructor is called!" << std::endl;
+	delete brain;
 }
 
 void	Dog::makeSound(void) const
