@@ -30,7 +30,7 @@ Animal::~Animal()
 	std::cout << "Animal destructor called!" << std::endl;
 }
 
-void	Animal::makeSound(void)
+void	Animal::makeSound(void) const
 {
 	std::cout << "Animal is making a sound!" << std::endl;
 }
