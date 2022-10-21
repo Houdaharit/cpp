@@ -5,7 +5,7 @@
 
 class Fixed
 {
-	double		value;
+	int		value;
 	static const int nfb = 8;
 	public:
 	Fixed();
