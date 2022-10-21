@@ -1,7 +1,7 @@
 #ifndef FIXED_H
 # define FIXED_H
 # include <iostream>
-# include <math>
+# include <cmath>
 
 class Fixed
 {
@@ -13,11 +13,12 @@ class Fixed
 	Fixed(const float&);
 	Fixed(const Fixed&);
 	Fixed &operator = (const Fixed&);
-	// (<<) operator
 	~Fixed();
 	int getRawBits(void) const;
+	int	getNbFractalBits() const;
 	void SetRawBits(int const);
 	float toFloat(void) const;
 	int toInt(void) const;
+	friend std::ostream& operator << (std::ostream& os, const Fixed&);
 };
 #endif
