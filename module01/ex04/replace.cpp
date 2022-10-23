@@ -6,6 +6,7 @@ void	replace(std::string line, char *new_file_name, char *s1, char *s2)
 	size_t 			pos;
 	std::string		str2;
 	std::string		str;
+	std::string new_line;
 
 	new_file.open(new_file_name, std::ios_base::app);
 	if (!new_file)
@@ -15,7 +16,8 @@ void	replace(std::string line, char *new_file_name, char *s1, char *s2)
 	{
 		str = line.substr(0, pos);
 		str2 = line.substr(pos + strlen(s1));
-		new_file << str + s2 + str2 << std::endl;
+		new_line = str + s2 + str2;
+		new_file << new_line << std::endl;
 	}
 	else
 		new_file << line << std::endl;
