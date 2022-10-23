@@ -15,5 +15,5 @@ class Harl
 	void filter(std::string complain);
 };
 
-int		cmp(std::string complain);
+int		level(std::string complain);
 #endif

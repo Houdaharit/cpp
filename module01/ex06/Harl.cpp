@@ -35,10 +35,10 @@ void	Harl::error(void)
 void    Harl::filter(std::string complain)
 {
     Harl    harl;
-    int     res;
+    int     l;
 
-    res = cmp(complain);
-    switch (res)
+    l = level(complain);
+    switch (l)
     {
         case 1:
             {
