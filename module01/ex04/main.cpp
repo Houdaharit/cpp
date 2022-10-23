@@ -1,10 +1,29 @@
 #include "replace.hpp"
 
+std::string     replace(std::string line, char *s1, char *s2)
+{
+    size_t          pos = 0;
+    std::string     str2;
+    std::string     str;
+    std::string     new_line;
+
+    while (line.find(s1) != std::string::npos)
+    {
+        pos = line.find(s1);
+        str = line.substr(0, pos);
+        str2 = line.substr(pos + strlen(s1));
+        new_line = str + s2 + str2;
+        line = new_line;
+    }
+    return (line);
+}
+
 int main(int argc, char **argv)
 {
 	std::ifstream	file;
+	std::ofstream 	new_file;
 	std::string	line;
-	char new_file[256] = {0};
+	std::string file_name(argv[1]);	
 
 	if (argc < 4)
 	{
@@ -18,9 +37,17 @@ int main(int argc, char **argv)
 		std::cerr << argv[1] << " can't be opened!" << std::endl;
 		return (1);
 	}
-  	strcpy(new_file, argv[1]);
-    strcat(new_file, ".replace");
+	new_file.open(file_name + ".replace");
+	if (!new_file)
+	{
+		std::cerr << file_name << " :file can't be opened!" << std::endl;
+		return (1);
+	}
 	while (getline(file, line))
-		replace(line, new_file, argv[2], argv[3]);
+	{
+		line = replace(line, argv[2], argv[3]);
+		new_file << line << std::endl;
+	}
 	file.close();
+	new_file.close();
 }

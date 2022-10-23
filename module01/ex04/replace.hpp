@@ -4,5 +4,5 @@
 # include <fstream>
 # include <string>
 
-void	replace(std::string, char*, char*, char*);
+std::string	replace(std::string, char*,  char*);
 # endif

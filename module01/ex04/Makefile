@@ -3,7 +3,8 @@ NAME = replace
 CC = c++
 
 CFLAGS = -Wall -Wextra -Werror 
-SRC = main.cpp replace.cpp
+
+SRC = main.cpp
 
 all : $(NAME)
 
