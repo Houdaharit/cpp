@@ -15,10 +15,16 @@ void	Contact::add()
 
 void	Contact::display_contact(void)
 {
-	std::cout << first_name << "\t";
-	std::cout << last_name << "\t";
-	std::cout << nickname << "\t";
-	std::cout << phone_num << "\t";
+	std::cout << std::setw(10);
+	std::cout << first_name.substr(0, 9);
+	if (first_name.size() > 10)
+		std::cout << ".|";
+	std::cout << std::setw(10);
+	std::cout << last_name.substr(0, 9) << "|";
+	std::cout << std::setw(10);
+	std::cout << nickname.substr(0, 9) << "|";
+	std::cout << std::setw(10);
+	std::cout << phone_num.substr(0, 9) << "|";
 	std::cout << std::endl;
 }
 
@@ -26,14 +32,14 @@ void	Contact::display_contact_endl()
 {
 	std::cout << std::endl;
 	std::cout << "Contact:" << std::endl;
-	std::cout << first_name << "\n";
-	std::cout << last_name << "\n";
-	std::cout << nickname << "\n";
-	std::cout << phone_num << "\n";
+	std::cout << "First name: " << first_name  << std::endl;
+	std::cout << "Last name: " << last_name << std::endl;
+	std::cout << "Nickname: " << nickname << std::endl;
+	std::cout << "Phone number: " << phone_num << std::endl;
 	std::cout << std::endl;
 }
 
-void	PhoneBook::display_pb()
+int	PhoneBook::display_pb()
 {
 	int	i;
 
@@ -41,18 +47,15 @@ void	PhoneBook::display_pb()
 	if (max == 0)
 	{
 		std::cout << "No contacts yet!" << std::endl;
-		return ;
+		return 0;
 	}
-	std::cout << "Index:          ";
-	std::cout << "First Name:     ";
-	std::cout << "Last Name:      ";
-	std::cout << "Nickname:       ";
-	std::cout << "Phone Number:   " << std::endl;
 	while (i < max)
 	{
-		std::cout << i << "       ";
+		std::cout << std::setw(10);
+		std::cout << i << "|";
 		contacts[i++].display_contact();
 	}
+	return (1);
 }
 
 void	PhoneBook::command(std::string cmd)
@@ -68,7 +71,8 @@ void	PhoneBook::command(std::string cmd)
 	}
 	else if (cmd == "SEARCH" || cmd == "search")
 	{
-		display_pb();
+		if (!display_pb())
+			return ;
 		std::cout << std::endl << "Enter index: ";
 		std::cin >> index;
 		while (index < 0 || index >= max)

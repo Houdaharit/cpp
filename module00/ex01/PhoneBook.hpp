@@ -2,6 +2,7 @@
 # define PHONEBOOK_HPP
 # include <iostream>
 # include <cstring>
+# include <iomanip>
 
 class Contact
 {
@@ -21,7 +22,7 @@ class	PhoneBook
 	Contact	contacts[8];
 	public:
 	int	max;
-	void	display_pb(void);
+	int	display_pb(void);
 	void	command(std::string);
 };
 
