@@ -2,6 +2,7 @@
 #define BUREAUCRAT_HPP
 #include <iostream>
 #include <exception>
+#include <string>
 
 class Bureaucrat
 {
@@ -9,10 +10,16 @@ class Bureaucrat
 	int grade; 
 	public:
 	Bureaucrat();
-	~Bureaucrat();
+	Bureaucrat(const std::string&, int&);
 	Bureaucrat(const Bureaucrat&);
+	~Bureaucrat();
 	Bureaucrat& operator = (const Bureaucrat&);
-	std::string getName(void);
-	int	getGrade(void);
+	std::string getName(void) const;
+	int	getGrade(void) const;
+	void setName(const std::string&) const;
+	void increaseGrade(void) const;
+	void decreaseGrade(void) const;
+	friend std::ostream& operator << (std::ostream &os, const Bureaucrat &bureaucrat);
 };
+
 #endif
