@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/25 10:34:06 by hharit            #+#    #+#             */
+/*   Updated: 2022/10/25 10:53:08 by hharit           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Fixed.hpp"
 
 Fixed::Fixed()
@@ -14,12 +26,12 @@ Fixed::Fixed(const Fixed& fixed)
 
 Fixed::Fixed(const int &i)
 {
-	this->value = (int)roundf(i * (1 << nfb)); 
+	this->value = (int)roundf(i * (1 << fractional_bits)); 
 }
 
 Fixed::Fixed(const float &f)
 {
-	this->value = (int)roundf(f * (1 << nfb)); 
+	this->value = (int)roundf(f * (1 << fractional_bits)); 
 }
 
 Fixed& Fixed::operator = (const Fixed& fixed)
@@ -51,21 +63,21 @@ void Fixed::SetRawBits(int const raw)
 
 int	Fixed::getNbFractalBits() const
 {
-	return (this->nfb);
+	return (this->fractional_bits);
 }
 
 int	Fixed::toInt(void) const
 {
-	return ((int)this->value / (int) (1 << nfb));	
+	return ((int)this->value / (int) (1 << fractional_bits));
 }
 
 float	Fixed::toFloat(void) const
 {
-	return ((float) this->value / (float) (1 << nfb));
+	return ((float) this->value / (float) (1 << fractional_bits));
 }
 
 std::ostream& operator << (std::ostream& os, const Fixed& fixed)
 {
-	os << (double)fixed.getRawBits() / (double)(1 << fixed.getNbFractalBits());
+	os << (double)fixed.value / (double)(1 << fixed.fractional_bits);
 	return (os);
 }

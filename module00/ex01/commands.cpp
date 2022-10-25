@@ -49,6 +49,16 @@ int	PhoneBook::display_pb()
 		std::cout << "No contacts yet!" << std::endl;
 		return 0;
 	}
+	std::cout << std::setw(10);
+	std::cout << "First name|";
+	std::cout << std::setw(10);
+	std::cout << "Last name|";
+	std::cout << std::setw(10);
+	std::cout << "Nickname|";
+	std::cout << std::setw(10);
+	std::cout << "Phone nb|";
+	std::cout << std::endl;
+
 	while (i < max)
 	{
 		std::cout << std::setw(10);

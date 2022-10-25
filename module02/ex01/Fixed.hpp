@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/25 10:34:09 by hharit            #+#    #+#             */
+/*   Updated: 2022/10/25 10:52:59 by hharit           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FIXED_H
 # define FIXED_H
 # include <iostream>
@@ -6,7 +18,7 @@
 class Fixed
 {
 	int		value;
-	static const int nfb = 8;
+	static const int fractional_bits = 8;
 	public:
 	Fixed();
 	Fixed(const int&);
