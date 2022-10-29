@@ -26,13 +26,11 @@ Fixed::Fixed(const Fixed& fixed)
 
 Fixed::Fixed(const int &i)
 {
-	std::cout << "Int constructor called!" << std::endl;
 	this->value = (int)roundf(i * (1 << fractional_bits)); 
 }
 
 Fixed::Fixed(const float &f)
 {
-	std::cout << "Float constructor called!" << std::endl;
 	this->value = (int)roundf(f * (1 << fractional_bits)); 
 }
 
@@ -80,6 +78,36 @@ float	Fixed::toFloat(void) const
 
 std::ostream& operator << (std::ostream& os, const Fixed& fixed)
 {
-	os << (double)fixed.value / (double)(1 << fixed.fractional_bits);
+	os << (float)fixed.value / (float)(1 << fixed.fractional_bits);
 	return (os);
+}
+
+bool Fixed::operator < (const Fixed &fixed)
+{
+	return ((float)this->value < (float)fixed.value)
+}
+
+bool Fixed::operator > (const Fixed &fixed)
+{
+	return (float)this->value > (float)fixed->value;
+}
+
+bool Fixed::operator <= (const Fixed &fixed)
+{
+	return (float)this->value <= (float)fixed->value;
+}
+
+bool Fixed::operator >= (const Fixed &fixed)
+{
+	return (float)this->value >= (float)fixed->value;
+}
+
+bool Fixed::operator == (const Fixed &fixed)
+{
+	return (float)this->value == (float)fixed->value;
+}
+
+bool Fixed::operator != (const Fixed &fixed)
+{
+	return (float)this->value != (float)fixed->value;
 }
