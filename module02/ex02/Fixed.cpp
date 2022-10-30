@@ -94,20 +94,40 @@ bool Fixed::operator > (const Fixed &fixed)
 
 bool Fixed::operator <= (const Fixed &fixed)
 {
-	return (float)this->value <= (float)fixed->value;
+	return (float)this->value <= (float)fixed.value;
 }
 
 bool Fixed::operator >= (const Fixed &fixed)
 {
-	return (float)this->value >= (float)fixed->value;
+	return (float)this->value >= (float)fixed.value;
 }
 
 bool Fixed::operator == (const Fixed &fixed)
 {
-	return (float)this->value == (float)fixed->value;
+	return (float)this->value == (float)fixed.value;
 }
 
 bool Fixed::operator != (const Fixed &fixed)
 {
-	return (float)this->value != (float)fixed->value;
+	return (float)this->value != (float)fixed.value;
+}
+
+float Fixed::operator * (const Fixed& fixed)
+{
+	return toFloat() * fixed.toFloat();
+}
+
+float Fixed::operator + (const Fixed& fixed)
+{
+	return toFloat() + fixed.toFloat();
+}
+
+float Fixed::operator / (const Fixed& fixed)
+{
+	return toFloat() / fixed.toFloat();
+}	
+
+float Fixed::operator - (const Fixed& fixed)
+{
+	return toFloat() - fixed.toFloat();
 }
