@@ -24,13 +24,20 @@ class Fixed
 	Fixed(const int&);
 	Fixed(const float&);
 	Fixed(const Fixed&);
-	Fixed &operator = (const Fixed&);
 	~Fixed();
+	Fixed &operator = (const Fixed&);
+	bool operator > (const Fixed&);
+	bool operator < (const Fixed&);
+	bool operator <= (const Fixed&);
+	bool operator >= (const Fixed&);
+	bool operator == (const Fixed&);
+	bool operator != (const Fixed&);
 	int getRawBits(void) const;
 	int	getNbFractalBits() const;
 	void SetRawBits(int const);
 	float toFloat(void) const;
 	int toInt(void) const;
-	friend std::ostream& operator << (std::ostream& os, const Fixed&);
 };
+
+std::ostream& operator << (std::ostream& os, const Fixed&);
 #endif

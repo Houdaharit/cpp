@@ -78,18 +78,18 @@ float	Fixed::toFloat(void) const
 
 std::ostream& operator << (std::ostream& os, const Fixed& fixed)
 {
-	os << (float)fixed.value / (float)(1 << fixed.fractional_bits);
+	os << (float)fixed.getRawBits() / (float)(1 << fixed.getNbFractalBits());
 	return (os);
 }
 
 bool Fixed::operator < (const Fixed &fixed)
 {
-	return ((float)this->value < (float)fixed.value)
+	return ((float)this->value < (float)fixed.value);
 }
 
 bool Fixed::operator > (const Fixed &fixed)
 {
-	return (float)this->value > (float)fixed->value;
+	return (float)this->value > (float)fixed.value;
 }
 
 bool Fixed::operator <= (const Fixed &fixed)
