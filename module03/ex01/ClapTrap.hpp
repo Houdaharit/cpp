@@ -5,6 +5,7 @@
 
 class ClapTrap
 {
+	protected:
 	unsigned int	hit_points;
 	unsigned int	energy_points;
 	unsigned int	attack_damage;
