@@ -80,34 +80,34 @@ std::ostream& operator << (std::ostream& os, const Fixed& fixed)
 	return (os);
 }
 
-bool Fixed::operator < (const Fixed &fixed)
+bool operator < (const Fixed &first, const Fixed& second)
 {
-	return ((float)this->value < (float)fixed.value);
+	return ((float)first.getRawBits() < (float)second.getRawBits());
 }
 
-bool Fixed::operator > (const Fixed &fixed)
+bool operator > (const Fixed &first, const Fixed &second)
 {
-	return (float)this->value > (float)fixed.value;
+	return (float)first.getRawBits() > (float)second.getRawBits();
 }
 
-bool Fixed::operator <= (const Fixed &fixed)
+bool operator <= (const Fixed &first, const Fixed &second)
 {
-	return (float)this->value <= (float)fixed.value;
+	return (float)first.getRawBits() <= (float)second.getRawBits();
 }
 
-bool Fixed::operator >= (const Fixed &fixed)
+bool operator >= (const Fixed &first, const Fixed& second)
 {
-	return (float)this->value >= (float)fixed.value;
+	return (float)first.getRawBits() >= (float)second.getRawBits();
 }
 
-bool Fixed::operator == (const Fixed &fixed)
+bool operator == (const Fixed &first, const Fixed& second)
 {
-	return (float)this->value == (float)fixed.value;
+	return (float)first.getRawBits() == (float)second.getRawBits();
 }
 
-bool Fixed::operator != (const Fixed &fixed)
+bool operator != (const Fixed &first, const Fixed& second)
 {
-	return (float)this->value != (float)fixed.value;
+	return (float)first.getRawBits() != (float)second.getRawBits();
 }
 
 float Fixed::operator * (const Fixed& fixed)
@@ -154,4 +154,45 @@ Fixed Fixed::operator -- (int)
 	Fixed fixed = *this;
 	--(*this);
 	return *this;
+}
+
+Fixed& Fixed::min(const Fixed& first, const Fixed& second)
+{
+	if (first > second)
+		return (Fixed&)second;
+	else if (first < second)
+		return (Fixed&)first;
+	else
+		return (Fixed&)first;
+}
+
+Fixed& Fixed::min(Fixed& first, Fixed& second)
+{
+	if (first > second)
+		return second;
+	else if (first < second)
+		return first;
+	else
+		return first;
+}
+
+Fixed& Fixed::max(const Fixed& first, const Fixed& second)
+
+{
+	if (first < second)
+		return (Fixed&)second;
+	else if (first > second)
+		return (Fixed&)first;
+	else
+		return (Fixed&)first;
+}
+
+Fixed& Fixed::max(Fixed& first, Fixed& second)
+{
+	if (first < second)
+		return second;
+	else if (first > second)
+		return first;
+	else
+		return first;
 }
