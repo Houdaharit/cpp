@@ -4,7 +4,7 @@ CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp bureaucrat.cpp form.cpp
+SRC = main.cpp Bureaucrat.cpp Form.cpp
 
 all: $(NAME)
 

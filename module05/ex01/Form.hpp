@@ -9,22 +9,24 @@ class Form
 	const int sign;
 	const int exec;
 	public:
+	class GradeTooLowException : public std::exception
+	{
+		virtual const char* what() const throw();
+	}too_low;
+	class GradeTooHighException : public std::exception
+	{
+		virtual const char* what() const throw();
+	} too_high;
 	Form();
 	Form(const Form&);
 	Form& operator = (const Form&);
 	~Form();
-	std::string getName(void);
-	bool getIsigned(void);
+	std::string getName(void) const;
+	bool getIsSigned(void);
+	int getSignGrade(void);
+	int getExecGrade(void);
 	void beSigned(const Bureaucrat&);
-	class GradeTooLowException : public std::exception
-	{
-		vitrual const char* what() const throw();
-	}too_low;
-	class GradeTooHighException : public std::exception
-	{
-		vitrual const char* what() const throw();
-	} too_high;
-	friend std::ostream& operator << (std::ostream &os, const Form* form);
 };
 
+std::ostream& operator << (std::ostream &os, const Form* form);
 #endif
