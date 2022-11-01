@@ -36,6 +36,10 @@ class Fixed
 	float operator + (const Fixed&);
 	float operator - (const Fixed&);
 	float operator / (const Fixed&);
+	Fixed& operator ++ (void);
+	Fixed operator ++ (int);
+	Fixed& operator -- (void);
+	Fixed operator -- (int);
 	int getRawBits(void) const;
 	int	getNbFractalBits() const;
 	void SetRawBits(int const);

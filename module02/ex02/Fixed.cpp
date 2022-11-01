@@ -51,13 +51,11 @@ Fixed::~Fixed()
 
 int Fixed::getRawBits(void) const
 {
-	std::cout << "getRawBits function called!" << std::endl;
 	return (this->value);
 }
 
 void Fixed::SetRawBits(int const raw)
 {
-	std::cout << "SetRawBits function called!" << std::endl;
 	this->value = raw;
 }
 
@@ -130,4 +128,30 @@ float Fixed::operator / (const Fixed& fixed)
 float Fixed::operator - (const Fixed& fixed)
 {
 	return toFloat() - fixed.toFloat();
+}
+
+Fixed& Fixed::operator ++ (void) 
+{
+	this->value++;
+	return *this;
+}
+
+Fixed Fixed::operator ++ (int)
+{
+	Fixed fixed = *this;
+	++(*this);
+	return fixed;
+}
+
+Fixed& Fixed::operator -- (void)
+{
+	this->value--;
+	return *this;
+}
+
+Fixed Fixed::operator -- (int)
+{
+	Fixed fixed = *this;
+	--(*this);
+	return *this;
 }
