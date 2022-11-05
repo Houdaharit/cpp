@@ -22,6 +22,7 @@ class	PhoneBook
 	Contact	contacts[8];
 	public:
 	int	max;
+	int index;
 	int	display_pb(void);
 	void	command(std::string);
 };

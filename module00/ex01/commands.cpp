@@ -2,7 +2,6 @@
 
 void	Contact::add()
 {
-
 	std::cout << "First name: ";
 	std::cin >> first_name;
 	std::cout << "Last name: ";
@@ -13,18 +12,30 @@ void	Contact::add()
 	std::cin >> phone_num;
 }
 
+//do something about it
 void	Contact::display_contact(void)
 {
 	std::cout << std::setw(10);
-	std::cout << first_name.substr(0, 9);
 	if (first_name.size() > 10)
-		std::cout << ".|";
+	std::cout << first_name.substr(0, 9) << ".|";
+	else
+	std::cout << first_name.substr(0, 9) << "|";
 	std::cout << std::setw(10);
-	std::cout << last_name.substr(0, 9) << "|";
+	if (last_name.size() > 10)
+		std::cout << last_name.substr(0, 9) << ".|";
+	else
+		std::cout << last_name.substr(0, 9) << "|";
 	std::cout << std::setw(10);
+	if (nickname.size() > 10)
+	std::cout << nickname.substr(0, 9) << ".|";
+	else
 	std::cout << nickname.substr(0, 9) << "|";
 	std::cout << std::setw(10);
-	std::cout << phone_num.substr(0, 9) << "|";
+	if (phone_num.size() > 10)
+	std::cout << phone_num.substr(0, 9) << ".|";
+	else
+	std::cout << phone_num.substr(0, 9) << ".|";
+		std::cout << "|";
 	std::cout << std::endl;
 }
 
@@ -50,13 +61,20 @@ int	PhoneBook::display_pb()
 		return 0;
 	}
 	std::cout << std::setw(10);
-	std::cout << "First name|";
+	std::cout << "index";
+	std::cout << "|";
 	std::cout << std::setw(10);
-	std::cout << "Last name|";
+	std::cout << "First Name";
+	std::cout << "|";
 	std::cout << std::setw(10);
-	std::cout << "Nickname|";
+	std::cout << "Last Name";
+	std::cout << "|";
 	std::cout << std::setw(10);
-	std::cout << "Phone nb|";
+	std::cout << "Nickname";
+	std::cout << "|";
+	std::cout << std::setw(10);
+	std::cout << "Phone Nb";
+	std::cout << "|";
 	std::cout << std::endl;
 
 	while (i < max)
@@ -70,26 +88,35 @@ int	PhoneBook::display_pb()
 
 void	PhoneBook::command(std::string cmd)
 {
-	int	index;
+	int	i;
 
 	if (cmd == "ADD" || cmd == "add")
 	{
-		if (max < 8)
-			contacts[max++].add();
+		if (index < 8)
+		{
+			printf("%d\n", max);
+			contacts[index++].add();
+			if (max < 8)
+				max++;
+		}
 		else
-			contacts[7].add();
+		{
+			max = 8;
+			index = 0;
+			contacts[index++].add();
+		}
 	}
 	else if (cmd == "SEARCH" || cmd == "search")
 	{
 		if (!display_pb())
 			return ;
 		std::cout << std::endl << "Enter index: ";
-		std::cin >> index;
+		std::cin >> i;
 		while (index < 0 || index >= max)
 		{
 			std::cout << "Try another index: ";
-			std::cin >> index;
+			std::cin >> i;
 		}
-		contacts[index].display_contact_endl();
+		contacts[i].display_contact_endl();
 	}
 }

@@ -14,6 +14,8 @@ int main()
 	PhoneBook	phonebook;
 	std::string	cmd;
 
+	phonebook.max = 0;
+	phonebook.index = 0;
 	std::cout << "Enter command: ";
 	std::cin >> cmd;
 	while (cmd != "exit" && cmd != "EXIT")
