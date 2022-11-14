@@ -18,12 +18,30 @@ int main()
 	phonebook.index = 0;
 	std::cout << "Enter command: ";
 	std::cin >> cmd;
+	if (std::cin.eof())
+		return 0;
+	while (std::cin.fail())
+	{
+		std::cin.clear();
+		std::cin.ignore();
+		std::cout << "Enter command: ";
+		std::cin >> cmd;
+	}
 	while (cmd != "exit" && cmd != "EXIT")
 	{
 		if (check_cmd(cmd))
 			phonebook.command(cmd);
 		std::cout << "Enter command: ";
 		std::cin >> cmd;
+		if (std::cin.fail())
+			return 0;
+		while (std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore();
+			std::cout << "Enter command: ";
+			std::cin >> cmd;
+		}
 	}
 	return (0);
 

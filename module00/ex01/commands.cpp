@@ -17,9 +17,9 @@ void	Contact::display_contact(void)
 {
 	std::cout << std::setw(10);
 	if (first_name.size() > 10)
-	std::cout << first_name.substr(0, 9) << ".|";
+		std::cout << first_name.substr(0, 9) << ".|";
 	else
-	std::cout << first_name.substr(0, 9) << "|";
+		std::cout << first_name.substr(0, 9) << "|";
 	std::cout << std::setw(10);
 	if (last_name.size() > 10)
 		std::cout << last_name.substr(0, 9) << ".|";
@@ -27,15 +27,15 @@ void	Contact::display_contact(void)
 		std::cout << last_name.substr(0, 9) << "|";
 	std::cout << std::setw(10);
 	if (nickname.size() > 10)
-	std::cout << nickname.substr(0, 9) << ".|";
+		std::cout << nickname.substr(0, 9) << ".|";
 	else
-	std::cout << nickname.substr(0, 9) << "|";
+		std::cout << nickname.substr(0, 9) << "|";
 	std::cout << std::setw(10);
 	if (phone_num.size() > 10)
-	std::cout << phone_num.substr(0, 9) << ".|";
+		std::cout << phone_num.substr(0, 9) << ".|";
 	else
-	std::cout << phone_num.substr(0, 9) << ".|";
-		std::cout << "|";
+		std::cout << phone_num.substr(0, 9) << ".|";
+	std::cout << "|";
 	std::cout << std::endl;
 }
 
@@ -94,7 +94,6 @@ void	PhoneBook::command(std::string cmd)
 	{
 		if (index < 8)
 		{
-			printf("%d\n", max);
 			contacts[index++].add();
 			if (max < 8)
 				max++;
@@ -112,7 +111,19 @@ void	PhoneBook::command(std::string cmd)
 			return ;
 		std::cout << std::endl << "Enter index: ";
 		std::cin >> i;
-		while (index < 0 || index >= max)
+		if (std::cin.eof())
+		{
+			std::cout << "HEHE"<< std::endl;
+			return ;
+		}
+		while(std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore();
+			std::cout << std::endl << "Enter index: ";
+			std::cin >> i;
+		}
+		while (i < 0 || i >= max)
 		{
 			std::cout << "Try another index: ";
 			std::cin >> i;
