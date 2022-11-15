@@ -30,7 +30,10 @@ int main()
 	while (cmd != "exit" && cmd != "EXIT")
 	{
 		if (check_cmd(cmd))
-			phonebook.command(cmd);
+		{
+			if (!phonebook.command(cmd))
+				return 0;
+		}
 		std::cout << "Enter command: ";
 		std::cin >> cmd;
 		if (std::cin.fail())

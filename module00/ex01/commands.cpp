@@ -1,15 +1,63 @@
 #include "PhoneBook.hpp"
 
-void	Contact::add()
+int	Contact::add()
 {
 	std::cout << "First name: ";
 	std::cin >> first_name;
+	if (std::cin.eof())
+		return 0;
+	while (std::cin.fail())
+	{
+		std::cin.clear();
+		std::cin.ignore();
+		std::cout << "First name: ";
+		std::cin >> first_name;
+	}
 	std::cout << "Last name: ";
 	std::cin >> last_name;
+	if (std::cin.eof())
+		return 0;
+	while (std::cin.fail())
+	{
+		std::cin.clear();
+		std::cin.ignore();
+		std::cout << "Last name: ";
+		std::cin >> last_name;
+	}
 	std::cout << "Nickname: ";
 	std::cin >> nickname;
+	if (std::cin.eof())
+		return 0;
+	while (std::cin.fail())
+	{
+		std::cin.clear();
+		std::cin.ignore();
+		std::cout << "Nickname: ";
+		std::cin >> nickname;
+	}
 	std::cout << "Phone number: ";
 	std::cin >> phone_num;
+	if (std::cin.eof())
+		return 0;
+	while (std::cin.fail())
+	{
+		std::cin.clear();
+		std::cin.ignore();
+		std::cout << "Phone number: ";
+		std::cin >> phone_num;
+	}
+	std::cout << "Your darkest secrect: ";
+	std::cin >> dark_secret;
+	if (std::cin.eof())
+		return 0;
+	while (std::cin.fail())
+	{
+		std::cin.clear();
+		std::cin.ignore();
+		std::cout << "Your darkest secret: ";
+		std::cin >> dark_secret;
+	}
+	return 1;
 }
 
 //do something about it
@@ -86,7 +134,7 @@ int	PhoneBook::display_pb()
 	return (1);
 }
 
-void	PhoneBook::command(std::string cmd)
+int	PhoneBook::command(std::string cmd)
 {
 	int	i;
 
@@ -108,14 +156,11 @@ void	PhoneBook::command(std::string cmd)
 	else if (cmd == "SEARCH" || cmd == "search")
 	{
 		if (!display_pb())
-			return ;
+			return 1;
 		std::cout << std::endl << "Enter index: ";
 		std::cin >> i;
 		if (std::cin.eof())
-		{
-			std::cout << "HEHE"<< std::endl;
-			return ;
-		}
+			return 0;
 		while(std::cin.fail())
 		{
 			std::cin.clear();
@@ -127,7 +172,17 @@ void	PhoneBook::command(std::string cmd)
 		{
 			std::cout << "Try another index: ";
 			std::cin >> i;
+			if (std::cin.eof())
+				return 0;
+			while(std::cin.fail())
+			{
+				std::cin.clear();
+				std::cin.ignore();
+				std::cout << std::endl << "Try another index: ";
+				std::cin >> i;
+			}
 		}
 		contacts[i].display_contact_endl();
 	}
+	return 1;
 }

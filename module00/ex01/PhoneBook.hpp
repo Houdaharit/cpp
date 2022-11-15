@@ -12,7 +12,7 @@ class Contact
 	std::string	phone_num;
 	std::string	dark_secret;
 	public:
-	void	add(void);
+	int	add(void);
 	void	display_contact(void);
 	void	display_contact_endl();
 };
@@ -24,7 +24,7 @@ class	PhoneBook
 	int	max;
 	int index;
 	int	display_pb(void);
-	void	command(std::string);
+	int	command(std::string);
 };
 
 # endif
