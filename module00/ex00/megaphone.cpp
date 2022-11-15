@@ -4,8 +4,8 @@
 int main(int argc, char **argv)
 {
 	char	c;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 1;
 	if (argc < 2)

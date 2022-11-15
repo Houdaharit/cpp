@@ -6,86 +6,50 @@ int	Contact::add()
 	std::cin >> first_name;
 	if (std::cin.eof())
 		return 0;
-	while (std::cin.fail())
-	{
-		std::cin.clear();
-		std::cin.ignore();
-		std::cout << "First name: ";
-		std::cin >> first_name;
-	}
 	std::cout << "Last name: ";
 	std::cin >> last_name;
 	if (std::cin.eof())
 		return 0;
-	while (std::cin.fail())
-	{
-		std::cin.clear();
-		std::cin.ignore();
-		std::cout << "Last name: ";
-		std::cin >> last_name;
-	}
 	std::cout << "Nickname: ";
 	std::cin >> nickname;
 	if (std::cin.eof())
 		return 0;
-	while (std::cin.fail())
-	{
-		std::cin.clear();
-		std::cin.ignore();
-		std::cout << "Nickname: ";
-		std::cin >> nickname;
-	}
 	std::cout << "Phone number: ";
 	std::cin >> phone_num;
 	if (std::cin.eof())
 		return 0;
-	while (std::cin.fail())
-	{
-		std::cin.clear();
-		std::cin.ignore();
-		std::cout << "Phone number: ";
-		std::cin >> phone_num;
-	}
 	std::cout << "Your darkest secrect: ";
 	std::cin >> dark_secret;
 	if (std::cin.eof())
 		return 0;
-	while (std::cin.fail())
-	{
-		std::cin.clear();
-		std::cin.ignore();
-		std::cout << "Your darkest secret: ";
-		std::cin >> dark_secret;
-	}
 	return 1;
 }
 
-//do something about it
 void	Contact::display_contact(void)
 {
 	std::cout << std::setw(10);
 	if (first_name.size() > 10)
 		std::cout << first_name.substr(0, 9) + ".";
 	else
-		std::cout << first_name.substr(0, 10);
+		std::cout << first_name;
 	std::cout << "|";
 	std::cout << std::setw(10);
 	if (last_name.size() > 10)
 		std::cout << last_name.substr(0, 9) + ".";
 	else
-		std::cout << last_name.substr(0, 10);
+		std::cout << last_name;
 	std::cout << "|";
 	std::cout << std::setw(10);
 	if (nickname.size() > 10)
 		std::cout << nickname.substr(0, 9) + ".";
 	else
-		std::cout << nickname.substr(0, 10);
+		std::cout << nickname;
 	std::cout << "|";
 	std::cout << std::setw(10);
 	if (phone_num.size() > 10)
 		std::cout << phone_num.substr(0, 9) + ".";
 	else
-		std::cout << phone_num.substr(0, 10);
+		std::cout << phone_num;
 	std::cout << "|";
 	std::cout << std::endl;
 }
@@ -145,7 +109,8 @@ int	PhoneBook::command(std::string cmd)
 	{
 		if (index < 8)
 		{
-			contacts[index++].add();
+			if (!contacts[index++].add())
+				return 0;
 			if (max < 8)
 				max++;
 		}
@@ -167,7 +132,7 @@ int	PhoneBook::command(std::string cmd)
 		while(std::cin.fail())
 		{
 			std::cin.clear();
-			std::cin.ignore();
+			std::cin.ignore(1000,'\n');
 			std::cout << std::endl << "Enter index: ";
 			std::cin >> i;
 		}
@@ -180,7 +145,7 @@ int	PhoneBook::command(std::string cmd)
 			while(std::cin.fail())
 			{
 				std::cin.clear();
-				std::cin.ignore();
+				std::cin.ignore(1000,'\n');
 				std::cout << std::endl << "Try another index: ";
 				std::cin >> i;
 			}
