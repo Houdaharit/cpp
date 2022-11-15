@@ -65,24 +65,27 @@ void	Contact::display_contact(void)
 {
 	std::cout << std::setw(10);
 	if (first_name.size() > 10)
-		std::cout << first_name.substr(0, 9) << ".|";
+		std::cout << first_name.substr(0, 9) + ".";
 	else
-		std::cout << first_name.substr(0, 9) << "|";
+		std::cout << first_name.substr(0, 10);
+	std::cout << "|";
 	std::cout << std::setw(10);
 	if (last_name.size() > 10)
-		std::cout << last_name.substr(0, 9) << ".|";
+		std::cout << last_name.substr(0, 9) + ".";
 	else
-		std::cout << last_name.substr(0, 9) << "|";
+		std::cout << last_name.substr(0, 10);
+	std::cout << "|";
 	std::cout << std::setw(10);
 	if (nickname.size() > 10)
-		std::cout << nickname.substr(0, 9) << ".|";
+		std::cout << nickname.substr(0, 9) + ".";
 	else
-		std::cout << nickname.substr(0, 9) << "|";
+		std::cout << nickname.substr(0, 10);
+	std::cout << "|";
 	std::cout << std::setw(10);
 	if (phone_num.size() > 10)
-		std::cout << phone_num.substr(0, 9) << ".|";
+		std::cout << phone_num.substr(0, 9) + ".";
 	else
-		std::cout << phone_num.substr(0, 9) << ".|";
+		std::cout << phone_num.substr(0, 10);
 	std::cout << "|";
 	std::cout << std::endl;
 }

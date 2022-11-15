@@ -6,5 +6,4 @@ int main()
 
 	z1 = newZombie("z1");
 	randomChump("z1");
-	while(1);
 }
