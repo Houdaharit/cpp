@@ -20,3 +20,8 @@ void    HumanB::attack()
 	std::cout << name << " attacks with their " << weapon->getType();
 	std::cout << std::endl;
 }
+
+HumanB::~HumanB()
+{
+	std::cout << this->name << " is destroyed!" << std::endl;
+}

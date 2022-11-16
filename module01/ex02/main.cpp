@@ -4,11 +4,10 @@ int main()
 {
 	std::string	str;
 	std::string	*stringPTR;
-	std::string	&stringREF;
+	std::string	&stringREF = str;
 
 	str = "HI THIS IS BRAIN";
 	stringPTR = &str;
-	stringREF = str;
 
 	std::cout << "Address of str: " << &str << std::endl;
 	std::cout << "Address held by stringPTR: " << stringPTR << std::endl;

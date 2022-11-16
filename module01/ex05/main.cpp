@@ -3,10 +3,9 @@
 int main()
 {
 	Harl		harl;
-	std::string	level;
 
-
-	std::cout << "level: ";
-	std::cin >> level;
-	harl.complain(level);
+	harl.complain("DEBUG");
+	harl.complain("WARNING");
+	harl.complain("INFO");
+	harl.complain("ERROR");
 }
