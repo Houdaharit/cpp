@@ -2,6 +2,7 @@
 
 Zombie::Zombie()
 {
+	this->name = "";
 }
 
 Zombie::Zombie(std::string name)
