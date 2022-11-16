@@ -23,7 +23,6 @@ int main(int argc, char **argv)
 	std::ifstream	file;
 	std::ofstream 	new_file;
 	std::string	line;
-	std::string file_name(argv[1]);	
 
 	if (argc < 4)
 	{
@@ -31,6 +30,7 @@ int main(int argc, char **argv)
 		std::cerr << "File name\ts1\ts2\n";
 		return (1);
 	}
+	std::string file_name(argv[1]);	
 	file.open(argv[1]);
 	if (!file)
 	{
