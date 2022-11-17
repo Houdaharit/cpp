@@ -3,38 +3,38 @@
 ScavTrap::ScavTrap()
 {
 	std::cout << "ScavTrap constructor called" << std::endl;
-	name = "";
-	hit_points = 100;
-	energy_points = 50;
-	attack_damage = 20;
+	this->name = "";
+	this->hit_points = 100;
+	this->energy_points = 50;
+	this->attack_damage = 20;
 }
 
 ScavTrap::ScavTrap(std::string name)
 {
 	std::cout << "ScavTrap constructor called" << std::endl;
 	this->name = name;
-	hit_points = 100;
-	energy_points = 50;
-	attack_damage = 20;
+	this->hit_points = 100;
+	this->energy_points = 50;
+	this->attack_damage = 20;
 }
 
 ScavTrap::ScavTrap(ScavTrap& scavtrap)
 {
 	std::cout << "ScavTrap copy constructor called" << std::endl;
-	name = scavtrap.name;
-	hit_points = scavtrap.hit_points;
-	energy_points = scavtrap.energy_points;
-	attack_damage = scavtrap.attack_damage;
+	this->name = scavtrap.name;
+	this->hit_points = scavtrap.hit_points;
+	this->energy_points = scavtrap.energy_points;
+	this->attack_damage = scavtrap.attack_damage;
 }
 
 ScavTrap& ScavTrap::operator = (const ScavTrap& scavtrap)
 {
 	if (this != &scavtrap)
 	{
-		name = scavtrap.name;
-		hit_points = scavtrap.hit_points;
-		energy_points = scavtrap.energy_points;
-		attack_damage = scavtrap.attack_damage;
+		this->name = scavtrap.name;
+		this->hit_points = scavtrap.hit_points;
+		this->energy_points = scavtrap.energy_points;
+		this->attack_damage = scavtrap.attack_damage;
 	}
 	return (*this);
 }
@@ -46,15 +46,15 @@ ScavTrap::~ScavTrap()
 
 void	ScavTrap::attack(const std::string& target)
 {
-	if (hit_points > 0 && energy_points > 0)
+	if (this->hit_points > 0 && this->energy_points > 0)
 	{
-		std::cout << "ScavTrap " << name << " attacks " << target << ", causing 1 points of damage!";
+		std::cout << "ScavTrap " << this->name << " attacks " << target << ", causing 1 points of damage!";
 		std::cout << std::endl;
-		energy_points--;
+		this->energy_points--;
 	}
 	else
 	{
-		std::cout << name << " doesn't have enough energy or hit points to attack!";
+		std::cout << this->name << " doesn't have enough energy or hit points to attack!";
 		std::cout << std::endl;
 	}
 }
