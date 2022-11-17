@@ -1,11 +1,11 @@
 #ifndef FIXED_H
 # define FIXED_H
 # include <iostream>
-
+# include <cmath>
 class Fixed
 {
 	int		value;
-	static const int nfb = 8;
+	static const int fractional_bits = 8;
 	public:
 	Fixed();
 	Fixed(const Fixed&);

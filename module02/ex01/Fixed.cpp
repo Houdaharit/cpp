@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:34:06 by hharit            #+#    #+#             */
-/*   Updated: 2022/10/25 10:53:08 by hharit           ###   ########.fr       */
+/*   Updated: 2022/11/17 01:40:55 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,6 @@ float	Fixed::toFloat(void) const
 
 std::ostream& operator << (std::ostream& os, const Fixed& fixed)
 {
-	os << (double)fixed.value / (double)(1 << fixed.fractional_bits);
+	os << (double)fixed.getRawBits() / (double)(1 << fixed.getNbFractalBits());
 	return (os);
 }
