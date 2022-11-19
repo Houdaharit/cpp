@@ -6,7 +6,6 @@ class Cat : public Animal
 {
 	public:
 		Cat();
-		Cat(const std::string&);
 		Cat(const Cat&);
 		Cat& operator = (const Cat&);
 		~Cat();

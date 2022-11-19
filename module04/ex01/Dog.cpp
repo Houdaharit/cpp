@@ -2,31 +2,27 @@
 
 Dog::Dog()
 {
+	std::cout << "Dog default constructor called!" << std::endl;
 	type = "dog";
 	brain = new Brain();
-	std::cout << "Dog constructor called!" << std::endl;
-}
-
-Dog::Dog(const std::string& type)
-{
-	std::cout << "Dog constructor called!" << std::endl;
-	brain = new Brain();
-	this->type = type;
 }
 
 Dog::Dog(const Dog& dog)
 {
-	std::cout << "Dog constructor called!" << std::endl;
+	std::cout << "Dog copy constructor called!" << std::endl;
 	type = dog.type;
-	brain = dog.brain;
+	this->brain = new Brain;
+	for (int i = 0; i < 100; i++)
+		this->brain->setIdea(i, this->brain->getIdea(i));
 }
 
 Dog& Dog::operator = (const Dog& dog)
 {
 	if (this != &dog)
 	{
-		brain = dog.brain;
 		type = dog.type;
+		for (int i = 0; i < 100; i++)
+			this->brain->setIdea(i, dog.brain->getIdea(i));
 	}
 	return (*this);
 }
@@ -40,4 +36,9 @@ Dog::~Dog()
 void	Dog::makeSound(void) const
 {
 	std::cout << "Dog is barking!" << std::endl;
+}
+
+void Dog::setBrain(Brain& brain)
+{
+	*this->brain = brain;
 }

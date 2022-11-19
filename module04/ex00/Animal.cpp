@@ -2,26 +2,20 @@
 
 Animal::Animal()
 {
-	std::cout << "Animal constructor called!" << std::endl;
-	type = "";
-}
-
-Animal::Animal(const std::string& type)
-{
-	std::cout << "Animal constructor called!" << std::endl;
-	this->type = type;
+	std::cout << "Animal default constructor called!" << std::endl;
+	this->type = "";
 }
 
 Animal::Animal(const Animal& animal)
 {
-	std::cout << "Animal constructor called!" << std::endl;
-	type = animal.type;
+	std::cout << "Animal copy constructor called!" << std::endl;
+	this->type = animal.type;
 }
 
 Animal& Animal::operator = (const Animal& animal)
 {
 	if (this != &animal)
-		type = animal.type;
+		this->type = animal.type;
 	return (*this);
 }
 
@@ -37,5 +31,5 @@ void	Animal::makeSound(void)
 
 std::string Animal::getType(void) const
 {
-	return (type);
+	return (this->type);
 }

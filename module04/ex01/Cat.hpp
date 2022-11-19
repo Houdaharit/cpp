@@ -8,10 +8,10 @@ class Cat : public Animal
 	Brain *brain;
 	public:
 		Cat();
-		Cat(const std::string&);
 		Cat(const Cat&);
 		Cat& operator = (const Cat&);
-		~Cat();
+		 ~Cat();
 		void makeSound(void) const;
+		void setBrain(Brain&);
 };
 #endif
