@@ -7,9 +7,11 @@ class Cat : public Animal
 {
 	Brain *brain;
 	public:
-	Cat(const Cat&);
-	Cat& operator = (const Cat&);
-	~Cat();
-	void makeSound(void) const;
+		Cat();
+		Cat(const Cat&);
+		Cat& operator = (const Cat&);
+		 ~Cat();
+		void makeSound(void) const;
+		void setBrain(Brain&);
 };
 #endif
