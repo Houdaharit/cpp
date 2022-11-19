@@ -2,8 +2,8 @@
 
 Dog::Dog()
 {
-	type = "dog";
 	std::cout << "Dog default constructor called!" << std::endl;
+	type = "dog";
 }
 
 Dog::Dog(const Dog& dog)
