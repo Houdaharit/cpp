@@ -52,7 +52,7 @@ int	Bureaucrat::getGrade(void) const
 
 std::ostream& operator << (std::ostream& os, const Bureaucrat& bureaucrat)
 {
-	os << bureaucrat.name << ", bureaucrat grade " << bureaucrat.grade;
+	os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
 	return (os);
 }
 

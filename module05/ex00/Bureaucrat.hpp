@@ -27,7 +27,7 @@ class Bureaucrat
 	void setName(const std::string&) const;
 	void increaseGrade(void);
 	void decreaseGrade(void);
-	friend std::ostream& operator << (std::ostream &os, const Bureaucrat &bureaucrat);
 };
 
+std::ostream& operator << (std::ostream &os, const Bureaucrat &bureaucrat);
 #endif
