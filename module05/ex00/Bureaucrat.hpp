@@ -8,7 +8,6 @@ class Bureaucrat
 {
 	const std::string name;
 	int grade; 
-	public:
 	class GradeTooHighException : public std::exception
 	{
 		virtual const char* what() const throw();
@@ -17,6 +16,7 @@ class Bureaucrat
 	{
 		virtual const char* what() const throw();
 	} too_low;
+	public:
 	Bureaucrat();
 	Bureaucrat(const std::string&, int);
 	Bureaucrat(const Bureaucrat&);

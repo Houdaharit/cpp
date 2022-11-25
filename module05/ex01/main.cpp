@@ -8,5 +8,6 @@ int main ()
 	c.decreaseGrade();
 	std::cout << b<< std::endl;*/
 	Form form;
+	std::cout << form.getIsSigned() << std::endl;
 	return (0);
 }

@@ -6,9 +6,8 @@ class Form
 {
 	const std::string name;
 	bool is_signed;
-	const int sign;
-	const int exec;
-	public:
+	const int sign_grade;
+	const int exec_grade;
 	class GradeTooLowException : public std::exception
 	{
 		virtual const char* what() const throw();
@@ -17,6 +16,7 @@ class Form
 	{
 		virtual const char* what() const throw();
 	} too_high;
+	public:
 	Form();
 	Form(const Form&);
 	Form& operator = (const Form&);

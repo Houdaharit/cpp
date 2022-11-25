@@ -2,9 +2,9 @@
 
 int main ()
 {
-	Bureaucrat b("hamid", 150);
+	Bureaucrat b("hamid", 200);
 	Bureaucrat c(b);
-	c.decreaseGrade();
-	std::cout << b << std::endl;
+	c.increaseGrade();
+	std::cout << c.getGrade( << std::endl;
 	return (0);
 }

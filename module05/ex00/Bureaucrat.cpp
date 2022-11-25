@@ -2,25 +2,37 @@
 
 Bureaucrat::Bureaucrat() : name("")
 {
-	std::cout << "Default constructor called!" << std::endl;
+	std::cout << "Bureaucrat default constructor called!" << std::endl;
 	this->grade = 150;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& bureaucrat) : name(bureaucrat.name)
 {
-	std::cout << "Copy constructor called!" << std::endl;
-	this->grade = bureaucrat.grade;
+	std::cout << "Bureaucrat copy constructor called!" << std::endl;
+        try
+        {
+                if (grade < 1)
+                        throw too_high;
+                else if (grade > 150)
+                        throw too_low;
+                this->grade = bureaucrat.grade;
+        }
+        catch (std::exception& e)
+        {
+                std::cout << e.what() << std::endl;
+        }
 }
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade) : name(name)
 {
+	std::cout << "Bureaucrat constructor called!";
 	try
 	{
 		if (grade < 1)
 			throw too_high;
 		else if (grade > 150)
 			throw too_low;
-		else this->grade = grade;
+		this->grade = grade;
 	}
 	catch (std::exception& e)
 	{
@@ -37,7 +49,7 @@ Bureaucrat& Bureaucrat::operator = (const Bureaucrat& bureaucrat)
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Destructor called!" << std::endl;
+	std::cout << "Bureaucrat destructor called!" << std::endl;
 }
 
 std::string Bureaucrat::getName(void) const
