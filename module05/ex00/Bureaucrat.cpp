@@ -61,8 +61,8 @@ void Bureaucrat::increaseGrade()
 	try
 	{
 		if (grade == 1)
-			throw too_low;
-		else this->grade += 1;
+			throw too_high;
+		else this->grade -= 1;
 	}
 	catch (std::exception& e)
 	{
