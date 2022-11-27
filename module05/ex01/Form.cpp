@@ -91,9 +91,11 @@ std::ostream& operator << (std::ostream &os, const Form& form)
 {
 	os << form.getName();
 	if (form.getIsSigned())
-		os << " is signed!";
+		os << " is signed,";
 	else
-		os << " is not signed!";
+		os << " is not signed,";
+	os << " sign grade " << form.getSignGrade();
+	os << " exec grade " << form.getExecGrade();
 	return os;
 }
 

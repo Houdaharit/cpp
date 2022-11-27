@@ -2,6 +2,8 @@
 #define FORM_HPP
 #include "Bureaucrat.hpp"
 
+class Bureaucrat;
+
 class Form
 {
 	const std::string name;

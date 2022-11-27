@@ -93,3 +93,26 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
 	return "Grade too low!";
 }
+
+std::string reason(const Form& form)
+{
+	std::string low("grade to low!");
+	std::string high("grade to high!");
+	if (form.getSignGrade() > 150)
+		return (low);	
+	else if (form.getSignGrade() < 1)
+		return (high);
+	else
+		return "";
+}
+
+void Bureaucrat::signForm(const Form& form) const
+
+{
+	if (form.getIsSigned())
+		std::cout << this->name << " signed" << form.getName() << std::endl;
+	else
+		std::cout << this->name << " couldn't sign " << form.getName() << " because" << reason(form);
+}
+
+
