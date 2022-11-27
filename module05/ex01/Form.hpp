@@ -19,14 +19,15 @@ class Form
 	public:
 	Form();
 	Form(const Form&);
+	Form(const std::string&, bool, int, int);
 	Form& operator = (const Form&);
 	~Form();
 	std::string getName(void) const;
-	bool getIsSigned(void);
-	int getSignGrade(void);
-	int getExecGrade(void);
+	bool getIsSigned(void) const;
+	int getSignGrade(void) const;
+	int getExecGrade(void) const;
 	void beSigned(const Bureaucrat&);
 };
 
-std::ostream& operator << (std::ostream &os, const Form* form);
+std::ostream& operator << (std::ostream &os, const Form& form);
 #endif

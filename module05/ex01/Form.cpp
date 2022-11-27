@@ -6,6 +6,34 @@ Form::Form() : name(""), sign_grade(150), exec_grade(150)
 	this->is_signed = false;
 }
 
+Form::Form(const std::string& name, bool is_signed, int sign, int exec) : name(name), sign_grade(sign), exec_grade(exec)
+{
+	std::cout << "Form constructor is called!" << std::endl;
+    try
+    {
+        if (sign < 1)
+            throw too_high;
+        else if (sign > 150)
+            throw too_low;
+    }
+    catch (std::exception& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+   	try
+    {
+        if (exec < 1)
+            throw too_high;
+        else if (exec > 150)
+            throw too_low;
+    }
+    catch (std::exception& e)
+    {
+        std::cout << e.what() << std::endl;
+	}
+	this->is_signed = is_signed;
+}
+
 Form::Form(const Form& form) : name(form.name), sign_grade(form.sign_grade), exec_grade(form.exec_grade)
 {
 	std::cout << "Form copy constructor called!" << std::endl;
@@ -29,17 +57,17 @@ std::string Form::getName(void) const
 	return (this->name);
 }	
 
-int  Form::getSignGrade()
+int  Form::getSignGrade() const
 {
 	return (this->sign_grade);
 }
 
-int Form::getExecGrade()
+int Form::getExecGrade() const
 {
 	return (this->exec_grade);
 }
 
-bool Form::getIsSigned(void)
+bool Form::getIsSigned(void) const
 {
 	return (this->is_signed);
 }
@@ -59,9 +87,15 @@ void Form::beSigned(const Bureaucrat &bureaucrat)
 	}
 }
 
-/*std::ostream& operator << (std::ostream &os, const Form& form)
+std::ostream& operator << (std::ostream &os, const Form& form)
 {
-}*/
+	os << form.getName();
+	if (form.getIsSigned())
+		os << " is signed!";
+	else
+		os << " is not signed!";
+	return os;
+}
 
 const char* Form::GradeTooHighException::what() const throw()
 {

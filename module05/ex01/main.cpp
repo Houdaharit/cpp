@@ -7,7 +7,8 @@ int main ()
 	Bureaucrat c(b);
 	c.decreaseGrade();
 	std::cout << b<< std::endl;*/
-	Form form;
-	std::cout << form.getIsSigned() << std::endl;
+	Form form("Birth certificate", true, 180, 140);
+	//std::cout << form.getIsSigned() << std::endl;
+	std::cout << form << std::endl;
 	return (0);
 }
