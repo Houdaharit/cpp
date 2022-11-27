@@ -21,7 +21,7 @@ class Form
 	public:
 	Form();
 	Form(const Form&);
-	Form(const std::string&, bool, int, int);
+	Form(const std::string&, int, int);
 	Form& operator = (const Form&);
 	~Form();
 	std::string getName(void) const;

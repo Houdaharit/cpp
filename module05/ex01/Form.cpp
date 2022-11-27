@@ -6,7 +6,7 @@ Form::Form() : name(""), sign_grade(150), exec_grade(150)
 	this->is_signed = false;
 }
 
-Form::Form(const std::string& name, bool is_signed, int sign, int exec) : name(name), sign_grade(sign), exec_grade(exec)
+Form::Form(const std::string& name, int sign, int exec) : name(name), sign_grade(sign), exec_grade(exec)
 {
 	std::cout << "Form constructor is called!" << std::endl;
     try
@@ -31,7 +31,7 @@ Form::Form(const std::string& name, bool is_signed, int sign, int exec) : name(n
     {
         std::cout << e.what() << std::endl;
 	}
-	this->is_signed = is_signed;
+    this->is_signed = false;
 }
 
 Form::Form(const Form& form) : name(form.name), sign_grade(form.sign_grade), exec_grade(form.exec_grade)
@@ -91,11 +91,11 @@ std::ostream& operator << (std::ostream &os, const Form& form)
 {
 	os << form.getName();
 	if (form.getIsSigned())
-		os << " is signed,";
+		os << " is signed! ";
 	else
-		os << " is not signed,";
-	os << " sign grade " << form.getSignGrade();
-	os << " exec grade " << form.getExecGrade();
+		os << " is not signed! ";
+	os << "Sign grade is " << form.getSignGrade();
+	os << " and exec grade is " << form.getExecGrade();
 	return os;
 }
 
