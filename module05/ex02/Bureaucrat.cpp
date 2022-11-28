@@ -14,6 +14,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat& bureaucrat) : name(bureaucrat.name)
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade) : name(name)
 {
+	std::cout << "Bureaucrat constructor called!" << std::endl;
 	try
 	{
 		if (grade < 1)
@@ -37,7 +38,7 @@ Bureaucrat& Bureaucrat::operator = (const Bureaucrat& bureaucrat)
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Destructor called!" << std::endl;
+	std::cout << "Bureaucrat destructor called!" << std::endl;
 }
 
 std::string Bureaucrat::getName(void) const

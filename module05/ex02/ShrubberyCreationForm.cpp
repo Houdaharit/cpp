@@ -1,6 +1,6 @@
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : sign_grade(145), exec_grade(137)
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : Form("ShrubberyCreationForm", 145, 137)
 {
 	std::cout << "ShrubberyCreationForm default constructor called!" << std::endl;
 	this->target = target;

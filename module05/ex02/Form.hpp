@@ -30,7 +30,7 @@ class Form
 	int getSignGrade(void) const;
 	int getExecGrade(void) const;
 	void beSigned(const Bureaucrat&);
-	virtual void execute(Bureaucrat const&) const = 0;
+	//virtual void execute(Bureaucrat const&) const = 0;
 };
 
 std::ostream& operator << (std::ostream &os, const Form& form);
