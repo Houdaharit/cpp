@@ -15,18 +15,11 @@ Bureaucrat::Bureaucrat(const Bureaucrat& bureaucrat) : name(bureaucrat.name)
 Bureaucrat::Bureaucrat(const std::string& name, int grade) : name(name)
 {
 	std::cout << "Bureaucrat constructor called!" << std::endl;
-	try
-	{
-		if (grade < 1)
-			throw too_high;
-		else if (grade > 150)
-			throw too_low;
-		else this->grade = grade;
-	}
-	catch (std::exception& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
+	if (grade < 1)
+		throw too_high;
+	else if (grade > 150)
+		throw too_low;
+	this->grade = grade;
 }
 
 Bureaucrat& Bureaucrat::operator = (const Bureaucrat& bureaucrat)
@@ -59,30 +52,16 @@ std::ostream& operator << (std::ostream& os, const Bureaucrat& bureaucrat)
 
 void Bureaucrat::increaseGrade()
 {
-	try
-	{
-		if (grade == 1)
-			throw too_low;
-		else this->grade += 1;
-	}
-	catch (std::exception& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
+	if (grade == 1)
+		throw too_low;
+	this->grade += 1;
 }
 
 void Bureaucrat::decreaseGrade()
 {
-	try
-	{
-		if (grade == 150)
-			throw too_low;
-		else this->grade += 1;
-	}
-	catch (std::exception& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
+	if (grade == 150)
+		throw too_low;
+	this->grade += 1;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
