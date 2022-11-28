@@ -3,8 +3,8 @@
 Cat::Cat()
 {
 	std::cout << "Cat default constructor is called!" << std::endl;
-	type = "cat";
-	brain = new Brain();
+	this->type = "cat";
+	this->brain = new Brain();
 }
 
 Cat::Cat(const Cat& cat)
@@ -20,7 +20,7 @@ Cat& Cat::operator = (const Cat& cat)
 {
 	if (this != &cat)
 	{
-		type = cat.type;
+		this->type = cat.type;
 		for (int i = 0; i < 100; i++)
 			this->brain->setIdea(i, cat.brain->getIdea(i));
 	}
