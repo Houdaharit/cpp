@@ -3,12 +3,9 @@
 
 int main ()
 {
-/*	Bureaucrat b("hamid", 150);
-	Bureaucrat c(b);
-	c.decreaseGrade();
-	std::cout << b<< std::endl;*/
-	Form form("Birth certificate", 180, 140);
-	//std::cout << form.getIsSigned() << std::endl;
+	Bureaucrat bureaucrat("Hamid", 140);
+	Form form("Birth certificate", 150, 140);
+	form.beSigned(bureaucrat);
 	std::cout << form << std::endl;
 	return (0);
 }

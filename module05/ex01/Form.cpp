@@ -76,7 +76,7 @@ void Form::beSigned(const Bureaucrat &bureaucrat)
 {
 	try
 	{
-		if (bureaucrat.getGrade() < 150)
+		if (bureaucrat.getGrade() <= this->sign_grade)
 			this->is_signed = true;
 		else
 			throw too_low;
