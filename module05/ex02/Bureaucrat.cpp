@@ -95,4 +95,8 @@ void Bureaucrat::signForm(const Form& form) const
 		std::cout << this->name << " couldn't sign " << form.getName() << " because" << reason(form);
 }
 
-
+void Bureaucrat::executeForm(Form const& form)
+{
+		form.execute(*this);
+		std::cout << this->name << " executed " << form.getName() << "!"<< std::endl;
+}

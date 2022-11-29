@@ -19,6 +19,10 @@ class Form
 	{
 		virtual const char* what() const throw();
 	} too_high;
+	class FormNotSignedException : public std::exception
+	{
+		virtual const char* what() const throw();
+	} not_signed;
 	public:
 	Form();
 	Form(const Form&);
@@ -30,7 +34,7 @@ class Form
 	int getSignGrade(void) const;
 	int getExecGrade(void) const;
 	void beSigned(const Bureaucrat&);
-	//virtual void execute(Bureaucrat const&) const = 0;
+	virtual void execute(Bureaucrat const&) const = 0;
 };
 
 std::ostream& operator << (std::ostream &os, const Form& form);

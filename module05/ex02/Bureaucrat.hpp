@@ -30,7 +30,8 @@ class Bureaucrat
 	void increaseGrade(void);
 	void decreaseGrade(void);
 	void signForm(const Form&) const;
-	friend std::ostream& operator << (std::ostream &os, const Bureaucrat &bureaucrat);
+	void executeForm(Form const & form);
 };
 
+std::ostream& operator << (std::ostream &os, const Bureaucrat &bureaucrat);
 #endif
