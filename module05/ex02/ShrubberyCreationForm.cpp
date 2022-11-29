@@ -28,3 +28,13 @@ std::string ShrubberyCreationForm::getTarget() const
 {
 	return (this->target);
 }
+
+void ShrubberyCreationForm::execute(Bureaucrat const& b) const
+{
+	std::fstream file;
+	std::string file_name(target + "_shrubbery");
+
+	file.open(file_name);
+	if (!file)
+		std::cerr << "file can't be opened!" << std::endl;
+}
