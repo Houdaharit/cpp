@@ -29,12 +29,64 @@ std::string ShrubberyCreationForm::getTarget() const
 	return (this->target);
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat const& b) const
+void ShrubberyCreationForm::asciiTree() const
 {
-	std::fstream file;
-	std::string file_name(target + "_shrubbery");
+	std::ofstream file;
+	char str[] = "target_shrubbery";
 
-	file.open(file_name);
+	//file.open(this->target + "_shrubbery");
+	file.open(str);
 	if (!file)
 		std::cerr << "file can't be opened!" << std::endl;
+
+	file << "		       0                 	        " << std::endl;
+	file << "		      101                 	 	" << std::endl;
+	file << "		     01010                	 	" << std::endl;
+	file << "		    1010101               	 	" << std::endl;
+	file << "		   010101010              	 	" << std::endl;
+	file << "		  10101010101                           "<< std::endl;
+	file << "		 0101010101010			   	" << std::endl;
+	file << "              	101010101010101  		        " << std::endl;	 
+	file << "                   010101010                           " << std::endl; 
+	file << "                  10101010101                          " << std::endl;
+	file << "                 0101010101010                         " << std::endl;
+	file << "                101010101010101                        " << std::endl;
+	file << "               01010101010101010                       " << std::endl;
+	file << "              1010101010101010101                      " << std::endl;
+	file << "             010101010101010101010                     " << std::endl;
+	file << "            10101010101010101010101                    " << std::endl;
+	file << "                   010101010                           " << std::endl;
+	file << "                  10101010101                          " << std::endl;
+	file << "                 0101010101010                         " << std::endl;
+	file << "                101010101010101                        " << std::endl;
+	file << "               01010101010101010                       " << std::endl;
+	file << "              1010101010101010101                      " << std::endl;
+	file << "             010101010101010101010                     " << std::endl;
+	file << "           0101010101010101010101010                   " << std::endl;
+	file << "          101010101010101010101010101                  " << std::endl;
+	file << "         01010101010101010101010101010                 " << std::endl;
+	file << "        1010101010101010101010101010101                " << std::endl;
+	file << "                   010101010                           " << std::endl;
+	file << "                  10101010101                          " << std::endl;
+	file << "                 0101010101010                         " << std::endl;
+	file << "                101010101010101                        " << std::endl;
+	file << "               01010101010101010                       " << std::endl;
+	file << "              1010101010101010101                      " << std::endl;
+	file << "             010101010101010101010                     " << std::endl;
+	file << "           0101010101010101010101010                   " << std::endl;
+	file << "          101010101010101010101010101                  " << std::endl;
+	file << "         01010101010101010101010101010                 " << std::endl;
+	file << "        1010101010101010101010101010101                " << std::endl;
+	file << "       010101010101010101010101010101010               " << std::endl;
+	file << "      10101010101010101010101010101010101              " << std::endl;
+	file << "     0101010101010101010101010101010101010             " << std::endl;
+	file << "                     01010                             " << std::endl;
+	file << "                     01010                             " << std::endl;
+	file << "                     01010                             " << std::endl;
+	file << "                     01010                             " << std::endl;
+	file.close();
+}
+
+void ShrubberyCreationForm::execute(Bureaucrat const& b) const 
+{
 }
