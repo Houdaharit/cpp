@@ -39,14 +39,14 @@ void ShrubberyCreationForm::asciiTree() const
 	if (!file)
 		std::cerr << "file can't be opened!" << std::endl;
 
-	file << "		       0                 	        " << std::endl;
-	file << "		      101                 	 	" << std::endl;
-	file << "		     01010                	 	" << std::endl;
-	file << "		    1010101               	 	" << std::endl;
-	file << "		   010101010              	 	" << std::endl;
-	file << "		  10101010101                           "<< std::endl;
-	file << "		 0101010101010			   	" << std::endl;
-	file << "              	101010101010101  		        " << std::endl;	 
+	file << "                       *                               " << std::endl;
+	file << "                      101                              " << std::endl;
+	file << "                     01010                             " << std::endl;
+	file << "                    1010101                            " << std::endl;
+	file << "                   010101010                           " << std::endl;
+	file << "                  10101010101                          "<< std::endl;
+	file << "                 0101010101010                         " << std::endl;
+	file << "                101010101010101                        " << std::endl;	 
 	file << "                   010101010                           " << std::endl; 
 	file << "                  10101010101                          " << std::endl;
 	file << "                 0101010101010                         " << std::endl;
@@ -62,6 +62,7 @@ void ShrubberyCreationForm::asciiTree() const
 	file << "               01010101010101010                       " << std::endl;
 	file << "              1010101010101010101                      " << std::endl;
 	file << "             010101010101010101010                     " << std::endl;
+	file << "            10101010101010101010101                    " << std::endl;
 	file << "           0101010101010101010101010                   " << std::endl;
 	file << "          101010101010101010101010101                  " << std::endl;
 	file << "         01010101010101010101010101010                 " << std::endl;
@@ -73,6 +74,7 @@ void ShrubberyCreationForm::asciiTree() const
 	file << "               01010101010101010                       " << std::endl;
 	file << "              1010101010101010101                      " << std::endl;
 	file << "             010101010101010101010                     " << std::endl;
+	file << "            10101010101010101010101                    " << std::endl;
 	file << "           0101010101010101010101010                   " << std::endl;
 	file << "          101010101010101010101010101                  " << std::endl;
 	file << "         01010101010101010101010101010                 " << std::endl;
