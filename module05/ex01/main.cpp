@@ -6,7 +6,7 @@ int main ()
 	try
 	{
 		Bureaucrat bureaucrat("Hamid", 140);
-		Form form("Birth certificate", 160, 140);
+		Form form("Birth certificate", 140, 140);
 		form.beSigned(bureaucrat);
 		std::cout << form << std::endl;
 	}
