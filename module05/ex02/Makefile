@@ -4,7 +4,7 @@ CC = c++
 
 CFLAGS = -Wall -Werror -std=c++98
 
-SRC = main.cpp Bureaucrat.cpp Form.cpp ShrubberyCreationForm.cpp
+SRC = main.cpp Bureaucrat.cpp Form.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp
 
 all: $(NAME)
 

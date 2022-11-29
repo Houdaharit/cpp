@@ -1,6 +1,6 @@
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string&) : Form("RobotomyRequestForm", 72, 45)
+RobotomyRequestForm::RobotomyRequestForm(const std::string& target) : Form("RobotomyRequestForm", 72, 45)
 {
 	std::cout << "RobotomyRequestForm constructor called!" << std::endl;
 	this->target = target;
@@ -9,7 +9,7 @@ RobotomyRequestForm::RobotomyRequestForm(const std::string&) : Form("RobotomyReq
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& r) : Form("RobotomyRequestForm", 72, 45)
 {
 	std::cout << "RobotomyRequestForm copy constructor called!" << std::endl;
-	this->target = target;
+	this->target = r.target;
 }
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& r)
@@ -22,4 +22,18 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& r
 RobotomyRequestForm::~RobotomyRequestForm()
 {
 	std::cout << "RobotomyRequestForm destructor called!" << std::endl;
+}
+
+void RobotomyRequestForm::robotize() const
+{
+	std::cout << this->target << " has been robotized!" << std::endl; 
+}
+
+void RobotomyRequestForm::execute(Bureaucrat const& executor) const
+{
+	if (executor.getGrade() >= this->exec_grade)
+		throw too_low;
+	if (!this->is_signed)
+		throw not_signed;
+	this->robotize();
 }

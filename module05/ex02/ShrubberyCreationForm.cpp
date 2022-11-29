@@ -89,11 +89,11 @@ void ShrubberyCreationForm::asciiTree() const
 	file.close();
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat const& b) const 
+void ShrubberyCreationForm::execute(Bureaucrat const& executor) const 
 {
-	if (b.getGrade() >= this->exec_grade)
+	if (executor.getGrade() >= this->exec_grade)
 		throw Form::too_low;
-	if (!is_signed)
+	if (!this->is_signed)
 		throw Form::not_signed;
 	this->asciiTree();
 }

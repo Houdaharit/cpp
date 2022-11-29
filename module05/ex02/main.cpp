@@ -7,11 +7,13 @@ int main ()
 {
 	try
 	{
-		Bureaucrat bureaucrat("Hamid", 130);
+		Bureaucrat bureaucrat("Hamid", 30);
 		ShrubberyCreationForm S("j");
 		S.beSigned(bureaucrat);
 		bureaucrat.executeForm(S);
-		//	RobotomyRequestForm P("hehe");
+			RobotomyRequestForm P("hehe");
+			P.beSigned(bureaucrat);
+			bureaucrat.executeForm(P);
 		/*	RobotomyRequestForm R = P;
 			std::cout << R.getSignGrade() << std::endl;
 			Form form("Birth certificate", 150, 140);
