@@ -26,7 +26,14 @@ RobotomyRequestForm::~RobotomyRequestForm()
 
 void RobotomyRequestForm::robotize() const
 {
-	std::cout << this->target << " has been robotized!" << std::endl; 
+	srand(time(NULL));
+	int random = rand() % 2;
+
+	std::cout << "Biiiiiiiiiiiiip" << std::endl;
+	if (random)
+		std::cout << this->target << " has been robotized!" << std::endl; 
+	else
+		std::cout << "Robotomy failed!" << std::endl;
 }
 
 void RobotomyRequestForm::execute(Bureaucrat const& executor) const

@@ -9,17 +9,14 @@ int main ()
 	try
 	{
 		Bureaucrat bureaucrat("Hamid", 30);
-		ShrubberyCreationForm S("j");
-		S.beSigned(bureaucrat);
-		bureaucrat.executeForm(S);
-			RobotomyRequestForm P("hehe");
-			P.beSigned(bureaucrat);
-			bureaucrat.executeForm(P);
-		/*	RobotomyRequestForm R = P;
-			std::cout << R.getSignGrade() << std::endl;
-			Form form("Birth certificate", 150, 140);
-			form.beSigned(bureaucrat);
-			std::cout << form << std::endl;*/
+		ShrubberyCreationForm form("Birth certificate");
+		form.beSigned(bureaucrat);
+		bureaucrat.executeForm(form);
+		RobotomyRequestForm form2("hehe");
+		form2.beSigned(bureaucrat);
+		bureaucrat.executeForm(form2);
+		RobotomyRequestForm form3 = form2;
+		std::cout << form << std::endl;
 	}
 	catch(std::exception& e)
 	{

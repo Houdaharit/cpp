@@ -32,14 +32,13 @@ std::string ShrubberyCreationForm::getTarget() const
 void ShrubberyCreationForm::asciiTree() const
 {
 	std::ofstream file;
-	char str[] = "target_shrubbery";
 
-	//file.open(this->target + "_shrubbery");
-	file.open(str);
+	file.open(this->target + "_shrubbery");
 	if (!file)
 		std::cerr << "file can't be opened!" << std::endl;
 
 	file << "                       *                               " << std::endl;
+	file << "                       0                               " << std::endl;
 	file << "                      101                              " << std::endl;
 	file << "                     01010                             " << std::endl;
 	file << "                    1010101                            " << std::endl;
