@@ -5,6 +5,21 @@ Intern::Intern()
 	std::cout << "Intern default constructor called!" << std::endl;
 }
 
+Intern::Intern(const Intern& intern)
+{
+	std::cout << "Intern copy constructor called!" << std::endl;
+}
+
+Intern& Intern::operator=(const Intern& intern)
+{
+	return *this;
+}
+
+Intern::~Intern()
+{
+	std::cout << "Intern destructor called!" << std::endl;
+}
+
 Form* Intern::RobotMaker(const std::string& target)
 {
 	return new RobotomyRequestForm(target);
@@ -43,10 +58,3 @@ const char* Intern::InvalidFormRequestException::what() const throw()
 {
 	return "Invalid form request!";
 }
-
-Intern::~Intern()
-{
-	std::cout << "Intern destructor called!" << std::endl;
-}
-
-

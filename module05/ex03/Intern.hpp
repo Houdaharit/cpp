@@ -13,6 +13,8 @@ class Intern
 
 	public:
 	Intern();
+	Intern(const Intern&);
+	Intern& operator=(const Intern&);
 	~Intern();
 	Form* makeForm(const std::string&, const std::string&);
 	Form* ShrubberyMaker(const std::string& target);
