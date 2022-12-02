@@ -20,7 +20,7 @@ int main ()
 		  std::cout << form << std::endl;*/
 		Intern  someRandomIntern;
 		Form*   rrf;
-		rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+		rrf = someRandomIntern.makeForm("robotomy rest", "Bender");
 		delete rrf;
 	}
 	catch(std::exception& e)
