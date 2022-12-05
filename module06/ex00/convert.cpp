@@ -72,6 +72,19 @@ double Convert::getDvalue() const
 	return this->dvalue;
 }
 
+Convert& Convert::operator=(const Convert& convert)
+{
+	if (this != &convert)
+	{
+		this->input = convert.input;
+		this->ivalue = convert.ivalue;
+		this->cvalue = convert.cvalue;
+		this->dvalue = convert.dvalue;
+		this->fvalue = convert.fvalue;
+	}
+	return (*this);
+}
+
 Convert::~Convert()
 {
 }

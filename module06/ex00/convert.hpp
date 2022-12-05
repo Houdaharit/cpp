@@ -38,7 +38,7 @@ class Convert
 	Convert();
 	Convert(std::string&);
 	Convert(const Convert&);
-	//Convert& operator=(const Convert&);
+	Convert& operator=(const Convert&);
 	~Convert();
 	void setValues();
 	char getCvalue()const;
