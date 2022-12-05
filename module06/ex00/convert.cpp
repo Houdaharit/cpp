@@ -78,7 +78,10 @@ Convert::~Convert()
 
 std::ostream& operator<<(std::ostream& os, const Convert& convert)
 {
-	os << "char: " << convert.getCvalue() << std::endl;
+	if (convert.getCvalue() < 32 || convert.getCvalue() > 126)
+		os << "char: Non displayable" << std::endl;
+	else
+		os << "char: " << convert.getCvalue() << std::endl;
 	os << "int: " << convert.getIvalue() << std::endl;
 	os << "float: " << convert.getFvalue() << std::endl;
 	os << "double: " << convert.getDvalue() << std::endl;
