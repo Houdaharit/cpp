@@ -83,7 +83,16 @@ std::ostream& operator<<(std::ostream& os, const Convert& convert)
 	else
 		os << "char: " << convert.getCvalue() << std::endl;
 	os << "int: " << convert.getIvalue() << std::endl;
-	os << "float: " << convert.getFvalue() << std::endl;
-	os << "double: " << convert.getDvalue() << std::endl;
+	os << "float: " << convert.getFvalue();
+	if (!(convert.getFvalue() - (int)convert.getFvalue()))
+		os << ".0f" << std::endl;
+	else
+		os << "f" << std::endl;
+	os << "double: " << convert.getDvalue();
+	if (!(convert.getDvalue() - (int)convert.getDvalue()))
+		os << ".0" << std::endl;
+	else
+		os << std::endl;
+
 	return os;
 }
