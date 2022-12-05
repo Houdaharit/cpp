@@ -49,4 +49,6 @@ class Convert
 
 std::ostream& operator<<(std::ostream& os, const Convert& convert);
 char input_type(std::string&);
+int display(const std::string&);
+int check_inf(std::string&);
 #endif
