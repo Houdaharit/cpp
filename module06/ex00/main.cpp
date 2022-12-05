@@ -5,10 +5,12 @@ int main(int argc, char **argv)
 	try
 	{
 		if (argc < 2)
-			throw more_arguments;
+			throw NotEnoughArgumentsException();
 		if (argc > 2)
-			throw too_many_arguments;
-		std::cout << argv[1] << std::endl;
+			throw TooManyArgumentsException();
+		std::string str(argv[1]);
+		Convert convert(str);
+		std::cout << convert;
 	}
 	catch (std::exception& e)
 	{
