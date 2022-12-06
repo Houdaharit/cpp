@@ -4,7 +4,7 @@ CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp Base.cpp realType.cpp A.cpp B.cpp C.cpp
+SRC = main.cpp Base.cpp realType.cpp A.cpp C.cpp B.cpp
 
 all : $(NAME)
 
