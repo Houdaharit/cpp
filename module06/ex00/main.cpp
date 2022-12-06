@@ -22,18 +22,6 @@ int display(const std::string& str)
 	return 1;
 }
 
-int check_inf(std::string& input)
-{
-	if (input == "nan")
-		return	display("nan");
-	if(input == "inf"|| input == "+inf" ||input == "inff" || input == "+inff")	
-		return display("inf");
-
-	if(input == "-inf"|| input == "inf" ||input == "inff" || input == "-inff")	
-		return display("-inf");
-	return 0;
-}
-
 int main(int argc, char **argv)
 {
 	try
@@ -46,7 +34,7 @@ int main(int argc, char **argv)
 		if(!check_inf(str))
 		{
 			Convert convert(str);
-			std::cout << convert;
+			std::cout << convert << std::endl;
 		}
 	}
 	catch (std::exception& e)

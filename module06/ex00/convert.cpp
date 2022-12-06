@@ -103,9 +103,6 @@ std::ostream& operator<<(std::ostream& os, const Convert& convert)
 		os << "f" << std::endl;
 	os << "double: " << convert.getDvalue();
 	if (!(convert.getDvalue() - (int)convert.getDvalue()))
-		os << ".0" << std::endl;
-	else
-		os << std::endl;
-
+		os << ".0";
 	return os;
 }

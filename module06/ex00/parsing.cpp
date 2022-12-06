@@ -1,5 +1,17 @@
 #include "convert.hpp"
 
+int check_inf(std::string& input)
+{
+        if (input == "nan")
+                return  display("nan");
+        if(input == "inf"|| input == "+inf" ||input == "inff" || input == "+inff")
+                return display("inf");
+
+        if(input == "-inf"|| input == "inf" ||input == "inff" || input == "-inff")
+                return display("-inf");
+        return 0;
+}
+
 int is_char(std::string& str)
 {
 	if (!isdigit(str[0]) && str.size() == 1)
