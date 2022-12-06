@@ -9,7 +9,7 @@ Base* generate(void)
 	int random = rand() % 2;
 	if (random % 2)
 		return new A();
-	if (random % 2 == 1)
+	if (random % 2 == 2)
 		return new B();
 	return new C();
 }
