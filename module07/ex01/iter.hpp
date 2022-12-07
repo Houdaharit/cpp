@@ -4,9 +4,9 @@
 #include <cstdlib>
 
 template <typename T>
-void iter(T array[], int length, void(*fct)(T&))
+void iter(T array[], size_t length, void(*fct)(T&))
 {
-	for (int i = 0; i < length; i++)
+	for (size_t i = 0; i < length; i++)
 		(*fct)(array[i]);
 }
 #endif

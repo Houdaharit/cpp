@@ -2,9 +2,9 @@
 
 void upperCase(std::string& str)
 {
-	int length = str.size();
+	size_t length = str.size();
 
-	for (int i = 0; i < length; i++)
+	for (size_t i = 0; i < length; i++)
 		str[i] = toupper(str[i]);
 }
 
