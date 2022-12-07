@@ -13,6 +13,10 @@ int main()
 	std::cout << "b= " << b << std::endl;
 	std::cout << "max: " << max<int>(a, b) << std::endl;
 	std::cout << "min: " << min<int>(a, b) << std::endl;
+	std::cout << std::endl;
 	std::cout << "max: " << max<float>(1.5f, 1.55f) << std::endl;
 	std::cout << "min: " << min<float>(1.5f, 1.55f) << std::endl;
+	std::cout << std::endl;
+	std::cout << "max: " << max<std::string>("hello", "Hello") << std::endl;
+	std::cout << "min: " << min<std::string>("hello", "Hello") << std::endl;
 }
