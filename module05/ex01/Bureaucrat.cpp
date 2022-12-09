@@ -2,13 +2,13 @@
 
 Bureaucrat::Bureaucrat() : name("")
 {
-	std::cout << "Default constructor called!" << std::endl;
+	std::cout << "Bureaucrat default constructor called!" << std::endl;
 	this->grade = 150;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& bureaucrat) : name(bureaucrat.name)
 {
-	std::cout << "Copy constructor called!" << std::endl;
+	std::cout << "Bureaucrat copy constructor called!" << std::endl;
 	this->grade = bureaucrat.grade;
 }
 

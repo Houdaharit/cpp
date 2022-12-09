@@ -2,7 +2,7 @@
 
 Form::Form() : name(""), sign_grade(150), exec_grade(150)
 {
-	std::cout << "Form constructor called!" << std::endl;
+	std::cout << "Form default constructor called!" << std::endl;
 	this->is_signed = false;
 }
 
