@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/09 13:17:17 by hharit            #+#    #+#             */
+/*   Updated: 2022/12/09 17:42:24 by hharit           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat() : name("")
@@ -58,7 +70,7 @@ void Bureaucrat::increaseGrade()
 {
 	if (grade == 1)
 		throw too_high;
-	else this->grade -= 1;
+	this->grade -= 1;
 }
 
 void Bureaucrat::decreaseGrade()

@@ -4,7 +4,6 @@ int main ()
 {
 	try
 	{
-		Bureaucrat d;
 		Bureaucrat b("hamid", 200);
 		Bureaucrat c(b);
 		c.increaseGrade();
