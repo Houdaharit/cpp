@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 13:17:17 by hharit            #+#    #+#             */
-/*   Updated: 2022/12/09 17:42:24 by hharit           ###   ########.fr       */
+/*   Updated: 2022/12/09 21:35:51 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,6 @@ Bureaucrat::Bureaucrat() : name("")
 Bureaucrat::Bureaucrat(const Bureaucrat& bureaucrat) : name(bureaucrat.name)
 {
 	std::cout << "Bureaucrat copy constructor called!" << std::endl;
-	if (grade < 1)
-		throw too_high;
-	else if (grade > 150)
-		throw too_low;
 	this->grade = bureaucrat.grade;
 }
 
