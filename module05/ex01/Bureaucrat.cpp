@@ -53,7 +53,7 @@ std::ostream& operator << (std::ostream& os, const Bureaucrat& bureaucrat)
 void Bureaucrat::increaseGrade()
 {
 	if (grade == 1)
-		throw too_low;
+		throw too_high;
 	this->grade -= 1;
 }
 
