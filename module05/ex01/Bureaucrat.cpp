@@ -54,14 +54,14 @@ void Bureaucrat::increaseGrade()
 {
 	if (grade == 1)
 		throw too_low;
-	this->grade += 1;
+	this->grade -= 1;
 }
 
 void Bureaucrat::decreaseGrade()
 {
 	if (grade == 150)
 		throw too_low;
-	else this->grade += 1;
+	this->grade += 1;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
