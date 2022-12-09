@@ -2,13 +2,13 @@
 
 Bureaucrat::Bureaucrat() : name("")
 {
-	std::cout << "Default constructor called!" << std::endl;
+	std::cout << "Bureaucrat default constructor called!" << std::endl;
 	this->grade = 150;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& bureaucrat) : name(bureaucrat.name)
 {
-	std::cout << "Copy constructor called!" << std::endl;
+	std::cout << "Bureaucrat copy constructor called!" << std::endl;
 	this->grade = bureaucrat.grade;
 }
 
@@ -53,8 +53,8 @@ std::ostream& operator << (std::ostream& os, const Bureaucrat& bureaucrat)
 void Bureaucrat::increaseGrade()
 {
 	if (grade == 1)
-		throw too_low;
-	this->grade += 1;
+		throw too_high;
+	this->grade -= 1;
 }
 
 void Bureaucrat::decreaseGrade()
