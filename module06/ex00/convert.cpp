@@ -11,6 +11,10 @@ void Convert::setValues()
 	if (type == 'i')
 	{
 		str >> this->ivalue;
+		if (str.fail())
+			std::cout << "Int: Impossible" << std::endl;
+		else
+			std::cout << "Int: " << this->ivalue << std::endl;
 		this->cvalue = static_cast<char>(this->ivalue);
 		this->fvalue = static_cast<float>(this->ivalue);
 		this->dvalue = static_cast<double>(this->ivalue);

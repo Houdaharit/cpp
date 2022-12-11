@@ -27,8 +27,8 @@ int is_int(std::string& str)
 		i++;
 	while (str[i])
 	{
-		if (!isdigit(str[i]))
-			return 0;
+		if (!isdigit(str[i]) && i > 0)
+			break;
 		i++;
 	}
 	return 1;
@@ -41,12 +41,12 @@ int is_double(std::string& str)
 
 	if (str[0] == '-' || str[i] == '+')
 		i++;
-	if (!str.find("."))
+	if (str.find(".") == std::string::npos)
 		return 0;
 	while (str[i])
 	{
 		if (!isdigit(str[i]) && str[i] != '.')
-			return 0;
+			return 1;
 		if (str[i] == '.')
 		{
 			if (sign == 2)
@@ -66,12 +66,12 @@ int is_float(std::string& str)
 
 	if (str[0] == '-' || str[i] == '+')
 		i++;
-	if (str[str.size() - 1] != 'f' || !str.find("."))
+	if (str[str.size() - 1] != 'f' || str.find(".") == std::string::npos)
 		return 0;
 	while (str[i] && (i < (int)str.size() - 1))
 	{
 		if (!isdigit(str[i]) && str[i] != '.')
-			return 0;
+			return 1;
 		if (str[i] == '.')
 		{
 			if (sign == 2)
@@ -89,11 +89,11 @@ char input_type(std::string& str)
 {
 	if (is_char(str))
 		return 'c';
-	else if (is_int(str))
-		return 'i';
 	else if (is_float(str))
 		return 'f';
 	else if (is_double(str))
 		return 'd';
+	else if (is_int(str))
+		return 'i';
 	return 'n';
 }
