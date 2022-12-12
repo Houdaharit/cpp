@@ -37,6 +37,8 @@ void display();
 	void displayImpossible();
 	Convert();
 	Convert(std::string&);
+	Convert(const Convert&);
+	Convert& operator=(const Convert&);
 	~Convert();
 };
 int input_type(std::string&);

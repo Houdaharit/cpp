@@ -9,6 +9,28 @@ Convert::Convert(std::string &str) : input(str), cvalue(0), fvalue(0.0f), dvalue
 {
 }
 
+Convert::Convert(const Convert &convert)
+{
+	this->input = convert.input;
+	this->cvalue = convert.cvalue;
+	this->fvalue = convert.fvalue;
+	this->dvalue = convert.dvalue;
+	this->ivalue = convert.ivalue;
+}
+
+Convert &Convert::operator=(const Convert &convert)
+{
+	if (this != &convert)
+	{
+		this->input = convert.input;
+		this->cvalue = convert.cvalue;
+		this->fvalue = convert.fvalue;
+		this->dvalue = convert.dvalue;
+		this->ivalue = convert.ivalue;
+	}
+	return (*this);
+}
+
 void Convert::display()
 {
 	char c = input_type(this->input);
