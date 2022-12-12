@@ -161,7 +161,7 @@ void Convert::displayChar()
 	this->fvalue = static_cast<float>(this->cvalue);
 	this->dvalue = static_cast<double>(this->cvalue);
 	std::cout << "int: " << this->ivalue << std::endl;
-	std::cout << "float: " << this->fvalue << std::endl;
+	std::cout << "float: " << this->fvalue;
 	if (this->fvalue - (int)this->fvalue == 0)
 		std::cout << ".0";
 	std::cout << "f" << std::endl;
