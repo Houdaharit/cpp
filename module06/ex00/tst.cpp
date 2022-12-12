@@ -1,18 +1,14 @@
 #include <iostream>
-#include <sstream>
-#include <cstdlib>
+#include <string>
+#include <exception>
 
-int main(int argc, char** argv)
+int main(int argc, char**argv)
 {
-	if (argc > 1)
+		std::string str(argv[1]);
+		int i = std::stoi(str);
+		std::cout << i << std::endl;
+	/*catch(std::exception& e)
 	{
-		std::stringstream str(argv[1]);
-		float f;
-		str >>f;
-		if (str.fail())
-			std::cout << "fail!" << std::endl;
-		else
-			std::cout << f << std::endl;
-	}
-
+		std::cout << "impossible" << std::endl;
+	}*/
 }

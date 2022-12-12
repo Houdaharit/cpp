@@ -1,14 +1,7 @@
 #ifndef CONVERT_HPP
 #define CONVERT_HPP
 #include <iostream>
-#include <cstdlib>
-#include <string>
-#include <ctype.h>
 #include <sstream>
-#include <string>
-#include <limits.h>
-
-
 
 class NotEnoughArgumentsException : public std::exception
 {
@@ -31,30 +24,13 @@ class TooManyArgumentsException : public std::exception
 class Convert
 {
 	std::string input;
-	char type;
-	char cvalue;
-	int ivalue;
-	double dvalue;
-	float fvalue;
-	bool cpossible;
-	bool ipossible;
-	bool fpossible;
-	bool dpossible;
+
 	public:
 	Convert();
 	Convert(std::string&);
-	Convert(const Convert&);
-	Convert& operator=(const Convert&);
 	~Convert();
-	void setValues();
-	char getCvalue()const;
-	int getIvalue() const;
-	double getDvalue() const;
-	float getFvalue() const;
 };
-
-std::ostream& operator<<(std::ostream& os, const Convert& convert);
-char input_type(std::string&);
-int display(const std::string&);
-int check_inf(std::string&);
+int isChar(std::string&);
+int isFloat(std::string&);
+int isInt(std::string&);
 #endif

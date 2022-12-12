@@ -1,28 +1,6 @@
-#include "convert.hpp"
+#include "Convert.hpp"
 
-int display(const std::string& str)
-{
-	std::cout << "char: Impossible" << std::endl;
-	std::cout << "int: Impossible" << std::endl;
-	if (str == "nan")
-	{
-		std::cout << "float: nanf" << std::endl;
-		std::cout << "double: nan" << std::endl;
-	}
-	if (str == "inf")
-	{
-		std::cout << "float: inff" << std::endl;
-		std::cout << "double: inf" << std::endl;
-	}
-	if (str == "-inf")
-	{
-		std::cout << "float: -inff" << std::endl;
-		std::cout << "double: -inf" << std::endl;
-	}
-	return 1;
-}
-
-int main(int argc, char **argv)
+int main(int argc, char** argv)
 {
 	try
 	{
@@ -30,16 +8,15 @@ int main(int argc, char **argv)
 			throw NotEnoughArgumentsException();
 		if (argc > 2)
 			throw TooManyArgumentsException();
-		std::string str(argv[1]);
-		if(!check_inf(str))
-		{
-			Convert convert(str);
-			std::cout << convert << std::endl;
-		}
+		Convert convert(argv[1]);
+		//std::cout << isChar(argv[1]) << std::endl;
+		std::cout << isFloat(argv[1]) << std::endl;
+		//std::cout << isInt(argv[1]) << std::endl;
 	}
-	catch (std::exception& e)
+	catch(std::exception& e)
 	{
 		std::cout << e.what() << std::endl;
+		return 1;
 	}
 	return 0;
 }

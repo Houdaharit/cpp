@@ -1,99 +1,119 @@
-#include "convert.hpp"
+#include "Convert.hpp"
 
-int check_inf(std::string& input)
+int input_type(std::string& input)
 {
-        if (input == "nan")
-                return  display("nan");
-        if(input == "inf"|| input == "+inf" ||input == "inff" || input == "+inff")
-                return display("inf");
-
-        if(input == "-inf"|| input == "inf" ||input == "inff" || input == "-inff")
-                return display("-inf");
-        return 0;
-}
-
-int is_char(std::string& str)
-{
-	if (!isdigit(str[0]) && str.size() == 1)
-		return 1;
-	return 0;
-}
-
-int is_int(std::string& str)
-{
-	int i = 0;
-
-	if (str[0] == '-' || str[i] == '+')
-		i++;
-	while (str[i])
-	{
-		if (!isdigit(str[i]) && i > 0)
-			break;
-		i++;
-	}
-	return 1;
-}
-
-int is_double(std::string& str)
-{
-	int i = 0;
-	int sign = 1;
-
-	if (str[0] == '-' || str[i] == '+')
-		i++;
-	if (str.find(".") == std::string::npos)
-		return 0;
-	while (str[i])
-	{
-		if (!isdigit(str[i]) && str[i] != '.')
-			return 1;
-		if (str[i] == '.')
-		{
-			if (sign == 2)
-				return 0;
-			else
-				sign = 2;
-		}
-		i++;
-	}
-	return 1;
-}
-
-int is_float(std::string& str)
-{
-	int i = 0;
-	int sign = 1;
-
-	if (str[0] == '-' || str[i] == '+')
-		i++;
-	if (str[str.size() - 1] != 'f' || str.find(".") == std::string::npos)
-		return 0;
-	while (str[i] && (i < (int)str.size() - 1))
-	{
-		if (!isdigit(str[i]) && str[i] != '.')
-			return 1;
-		if (str[i] == '.')
-		{
-			if (sign == 2)
-				return 0;
-			else
-				sign = 2;
-		}
-		i++;
-	}
-	return 1;
-
-}
-
-char input_type(std::string& str)
-{
-	if (is_char(str))
+	if (input.size() == 1 && !std::isdigit(input[0]))
 		return 'c';
-	else if (is_float(str))
+	else if (input[input.size() - 1] == 'f' && input.find('.') != std::string::npos
+			&& std::isdgit(input[0]))
 		return 'f';
-	else if (is_double(str))
+	else if (input[input.size() - 1] != 'f' && input.find('.') != std::string::npos
+			&& std::isdgit(input[0]))
 		return 'd';
-	else if (is_int(str))
+	if (input.size() > 1 && input[input.size() - 1] != 'f'
+			&& input.find('.') == std::string::npos && std::isdgit(input[0]))
 		return 'i';
 	return 'n';
 }
+
+void Convert::display()
+{
+	char type = input_type(this->input);
+	try
+	{
+		if (type == 'n')
+			throw all_impossible;
+		else if (type == 'd')
+			display_double(this->input);
+	}
+}
+
+void Convert::display_double()
+{
+	try
+	{
+		this->dvalue = std::stod(this->input);
+		if (dvalue < 0 || dvalue > 255 )
+			std::cout << "char: Impossible" << std::endl;
+		else
+		{
+			this->cvalue = static_cast<char>(this->dvalue);
+			if (!std::isprint(this->cvalue))
+				std::cout << "char: Non displayable" << std::endl;
+			else
+				std::cout << "char: " << this->cvalue <<std::endl;
+		}
+		if (this->dvalue <= std::numeric_limits<int>::max() && this->dvalue >= std::numeric_limits<int>::min())
+		{
+			this->ivalue = static_cast<int>(this->dvalue);
+			std::cout << "int: " << this->ivalue << std::endl;
+		}
+		else
+			std::cout << "int: Impossible" << std::endl;
+		if (dvalue <= std::numeric_limits<float>::max() && dvalue >= std::numeric_limits<float>::min())
+		{
+			this->fvalue = static_cast<float>(this->dvalue);
+			std::cout << "float: " << this->fvalue << std::endl;
+		}
+		else
+		{
+			if (dvalue < std::numeric_limits<float>::min())
+				std::cout << "float: -inff" << std::endl;
+			else
+				std::cout << "float: inff" << std::endl;
+		}
+		std::cout << "double: " << this->dvalue << std::cout;
+	}
+	catch(std::exception& e)
+	{
+		std::cout << "char: Inpossible" << std::endl;
+		std::cout << "int: Inpossible" << std::endl;
+		std::cout << "float: Impossible" << std::endl;
+		std::cout << "double: Impossible" << std::endl;
+	}
+}
+
+void Convert::display_float()
+{
+	try
+	{
+		this->fvalue = stof(this->input);
+		if (fvalue < 0 || fvalue > 255 )
+			std::cout << "char: Impossible" << std::endl;
+		else
+		{
+			this->cvalue = static_cast<char>(this->fvalue);
+			if (!std::isprint(this->cvalue))
+				std::cout << "char: Non displayable" << std::endl;
+			else
+				std::cout << "char: " << this->cvalue <<std::endl;
+		}
+		if (this->fvalue <= std::numeric_limits<int>::max() && this->fvalue >= std::numeric_limits<int>::min())
+		{
+			this->ivalue = static_cast<int>(this->fvalue);
+			std::cout << "int: " << this->ivalue << std::endl;
+		}
+		else
+			std::cout << "int: Impossible" << std::endl;
+		std::cout << this->fvalue << std::endl;
+		this->dvalue = static_cast<double>(this->fvalue);
+
+	}
+	catch()
+	{
+		std::cout << "char: Inpossible" << std::endl;
+		std::cout << "int: Inpossible" << std::endl;
+		std::cout << "float: Impossible" << std::endl;
+
+	}
+	try
+	{
+		this->dvalue = std::stod(this->input);
+		std::cout << "double: " << this->dvalue << std::endl;
+	}catch(std::exception& e)
+	{
+		std::cout << "double: Impossible" << std::endl;
+	}
+}
+
+
