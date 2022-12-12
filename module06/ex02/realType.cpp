@@ -6,10 +6,10 @@
 Base* generate(void)
 {
 	srand(time(NULL));
-	int random = rand() % 2;
-	if (random % 2)
+	int random = rand() % 3;
+	if (random == 1)
 		return new A();
-	if (random % 2 == 2)
+	if (random == 2)
 		return new B();
 	return new C();
 }
