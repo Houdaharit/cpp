@@ -4,43 +4,7 @@ Convert::Convert(): input("") , cvalue(0), ivalue(0), dvalue(0.0), fvalue(0.0f)
 {
 }
 
-void Convert::setValues()
-{
-	char type = input_type(this->input);
-	std::stringstream str(this->input);
-	if (type == 'i')
-	{
-		str >> this->ivalue;
-		if (str.fail())
-			std::cout << "Int: Impossible" << std::endl;
-		else
-			std::cout << "Int: " << this->ivalue << std::endl;
-		this->cvalue = static_cast<char>(this->ivalue);
-		this->fvalue = static_cast<float>(this->ivalue);
-		this->dvalue = static_cast<double>(this->ivalue);
-	}
-	if (type == 'd')
-	{
-		str >> this->dvalue;
-		this->cvalue = static_cast<char>(this->dvalue);
-		this->fvalue = static_cast<float>(this->dvalue);
-		this->ivalue = static_cast<int>(this->dvalue);
-	}
-	if(type == 'f')
-	{
-		str >> this->fvalue;
-		this->cvalue = static_cast<char>(this->fvalue);
-		this->dvalue = static_cast<double>(this->fvalue);
-		this->ivalue = static_cast<int>(this->fvalue);
-	}
-	if (type == 'c')
-	{
-		str >> this->cvalue;
-		this->ivalue = static_cast<int>(this->cvalue);
-		this->fvalue = static_cast<float>(this->cvalue);
-		this->dvalue = static_cast<double>(this->cvalue);
-	}
-}
+
 
 Convert::Convert(std::string& str) : input(str)
 {

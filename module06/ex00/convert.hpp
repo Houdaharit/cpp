@@ -31,10 +31,15 @@ class TooManyArgumentsException : public std::exception
 class Convert
 {
 	std::string input;
+	char type;
 	char cvalue;
 	int ivalue;
 	double dvalue;
 	float fvalue;
+	bool cpossible;
+	bool ipossible;
+	bool fpossible;
+	bool dpossible;
 	public:
 	Convert();
 	Convert(std::string&);
