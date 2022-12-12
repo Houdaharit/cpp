@@ -6,6 +6,8 @@
 int main()
 {
 	Base* b = generate();
+	C c;
 	identify(b);
-	(void)b;
+	identify(c);
+	delete b;
 }
