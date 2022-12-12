@@ -116,4 +116,46 @@ void Convert::display_float()
 	}
 }
 
+void Convert::displayInt()
+{
+	try
+	{
+		this->ivalue = std::stoi(this->input);
+	}
+	catch(std::exception& e)
+	{
+		std::cout << "char: Impossible" << std::endl;
+		std::cout << "int: Impossible" << std::endl;
+	}
+	try
+	{
+		this->dvalue = std::stod(this->input);
+		if (this->dvalue <= std::numeric_limits<float>::max() && this->dvalue >= std::numeric_limits<float>::min())
+		{
+			this->fvalue = static_cast<float>(this->dvalue);
+			std::cout << "float: " << this->fvalue << std::endl;
+		}
 
+	}
+	catch(std::exception& e)
+	{
+		std::cout << "float: Impossible" << std::endl;
+		std::cout << "double: Impossible" << std::end;
+	}
+
+}
+
+void Convert::displayChar()
+{
+	this->cvalue = this->input[0];
+	if (!std::isprint(this->cvalue))
+		std::cout << "char: Non displayable" << std::endl;
+	else
+		std::cout << "char: " << this->cvalue <<std::endl;
+	this->ivalue = static_cast<int>(this->cvalue);
+	this->fvalue = static_cast<float>(this->cvalue);
+	this->dvalue = static_cast<double>(this->cvalue);
+	std::cout << "int: " << this->ivalue << std::endl;
+	std::cout << "float: " << this->fvalue << std::endl;
+	std::cout << "double: " << this->dvalue << std::endl;
+}
