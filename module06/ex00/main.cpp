@@ -8,10 +8,9 @@ int main(int argc, char** argv)
 			throw NotEnoughArgumentsException();
 		if (argc > 2)
 			throw TooManyArgumentsException();
-		Convert convert(argv[1]);
-		//std::cout << isChar(argv[1]) << std::endl;
-		std::cout << isFloat(argv[1]) << std::endl;
-		//std::cout << isInt(argv[1]) << std::endl;
+		std::string str(argv[1]);
+		Convert convert(str);
+convert.display();
 	}
 	catch(std::exception& e)
 	{

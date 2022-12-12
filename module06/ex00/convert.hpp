@@ -6,31 +6,37 @@
 class NotEnoughArgumentsException : public std::exception
 {
 	public:
-	virtual const char* what() const throw()
-	{
-		return "Not enough arguments!";
-	}
+		virtual const char* what() const throw()
+		{
+			return "Not enough arguments!";
+		}
 };
 
 class TooManyArgumentsException : public std::exception
 {
 	public:
-	virtual const char* what() const throw()
-	{
-		return "Too many arguments!";
-	}
+		virtual const char* what() const throw()
+		{
+			return "Too many arguments!";
+		}
 };
 
 class Convert
 {
 	std::string input;
-
+	char cvalue;
+	float fvalue;
+	double dvalue;
+	int ivalue;
 	public:
+void display();
+	void displayChar();
+	void displayInt();
+	void displayDouble();
+	void displayFloat();
 	Convert();
 	Convert(std::string&);
 	~Convert();
 };
-int isChar(std::string&);
-int isFloat(std::string&);
-int isInt(std::string&);
+int input_type(std::string&);
 #endif

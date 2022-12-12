@@ -5,30 +5,19 @@ int input_type(std::string& input)
 	if (input.size() == 1 && !std::isdigit(input[0]))
 		return 'c';
 	else if (input[input.size() - 1] == 'f' && input.find('.') != std::string::npos
-			&& std::isdgit(input[0]))
+			&& std::isdigit(input[0]))
 		return 'f';
 	else if (input[input.size() - 1] != 'f' && input.find('.') != std::string::npos
-			&& std::isdgit(input[0]))
+			&& std::isdigit(input[0]))
 		return 'd';
-	if (input.size() > 1 && input[input.size() - 1] != 'f'
-			&& input.find('.') == std::string::npos && std::isdgit(input[0]))
+	if (input[input.size() - 1] != 'f'
+			&& input.find('.') == std::string::npos && std::isdigit(input[0]))
 		return 'i';
 	return 'n';
 }
 
-void Convert::display()
-{
-	char type = input_type(this->input);
-	try
-	{
-		if (type == 'n')
-			throw all_impossible;
-		else if (type == 'd')
-			display_double(this->input);
-	}
-}
 
-void Convert::display_double()
+void Convert::displayDouble()
 {
 	try
 	{
@@ -62,7 +51,7 @@ void Convert::display_double()
 			else
 				std::cout << "float: inff" << std::endl;
 		}
-		std::cout << "double: " << this->dvalue << std::cout;
+		std::cout << "double: " << this->dvalue << std::endl;
 	}
 	catch(std::exception& e)
 	{
@@ -73,12 +62,12 @@ void Convert::display_double()
 	}
 }
 
-void Convert::display_float()
+void Convert::displayFloat()
 {
 	try
 	{
 		this->fvalue = stof(this->input);
-		if (fvalue < 0 || fvalue > 255 )
+		if (fvalue < 0 || fvalue > 255)
 			std::cout << "char: Impossible" << std::endl;
 		else
 		{
@@ -95,11 +84,11 @@ void Convert::display_float()
 		}
 		else
 			std::cout << "int: Impossible" << std::endl;
-		std::cout << this->fvalue << std::endl;
+		std::cout << "float: " << this->fvalue << std::endl;
 		this->dvalue = static_cast<double>(this->fvalue);
 
 	}
-	catch()
+	catch(std::exception& e)
 	{
 		std::cout << "char: Inpossible" << std::endl;
 		std::cout << "int: Inpossible" << std::endl;
@@ -140,7 +129,7 @@ void Convert::displayInt()
 	catch(std::exception& e)
 	{
 		std::cout << "float: Impossible" << std::endl;
-		std::cout << "double: Impossible" << std::end;
+		std::cout << "double: Impossible" << std::endl;
 	}
 
 }
