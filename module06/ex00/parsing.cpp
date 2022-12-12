@@ -167,3 +167,11 @@ void Convert::displayChar()
 	std::cout << "f" << std::endl;
 	std::cout << "double: " << this->dvalue << std::endl;
 }
+
+void Convert::displayImpossible()
+{
+	std::cout << "char: Impossible" << std::endl;
+	std::cout << "int: Impossible" << std::endl;
+	std::cout << "float: Impossible" << std::endl;
+	std::cout << "double: Impossible" << std::endl;
+}

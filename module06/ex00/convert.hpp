@@ -34,6 +34,7 @@ void display();
 	void displayInt();
 	void displayDouble();
 	void displayFloat();
+	void displayImpossible();
 	Convert();
 	Convert(std::string&);
 	~Convert();

@@ -1,10 +1,10 @@
 #include "Convert.hpp"
 
-Convert::Convert(): input(""), cvalue(0), fvalue(0.0f), dvalue(0.0), ivalue(0)
+Convert::Convert() : input(""), cvalue(0), fvalue(0.0f), dvalue(0.0), ivalue(0)
 {
 }
 
-Convert::Convert(std::string& str) : input(str), cvalue(0), fvalue(0.0f), dvalue(0.0), ivalue(0)
+Convert::Convert(std::string &str) : input(str), cvalue(0), fvalue(0.0f), dvalue(0.0), ivalue(0)
 
 {
 }
@@ -12,7 +12,6 @@ Convert::Convert(std::string& str) : input(str), cvalue(0), fvalue(0.0f), dvalue
 void Convert::display()
 {
 	char c = input_type(this->input);
-		std::cout << c  << std::endl;
 	if (c == 'c')
 		displayChar();
 	if (c == 'f')
@@ -21,6 +20,8 @@ void Convert::display()
 		displayDouble();
 	if (c == 'i')
 		displayInt();
+	if (c == 'n')
+		displayImpossible();
 }
 
 Convert::~Convert()
