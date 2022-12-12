@@ -14,7 +14,7 @@ $(NAME) : $(OBJ)
 	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
 
 %.o:%.cpp
-$(CC) -o -c
+$(CC) -o $< -c $@
 
 clean :
 	rm -rf $(OBJ)
