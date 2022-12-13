@@ -4,7 +4,7 @@ CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp Convert.cpp parsing.cpp
+SRC = main.cpp Convert.cpp parsing.cpp display.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
