@@ -34,6 +34,7 @@ Convert &Convert::operator=(const Convert &convert)
 void Convert::display()
 {
 	char c = input_type(this->input);
+	std::cout << c << std::endl;
 	if (c == 'c')
 		displayChar();
 	if (c == 'f')
