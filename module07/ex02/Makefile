@@ -1,14 +1,14 @@
-NAME = iter
+NAME = array
 
 CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp
+SRC = main.cpp Array.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-all: $(NAME)
+all : $(NAME)
 
 $(NAME) : $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
@@ -22,4 +22,5 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 
-re : fclean all
+re: fclean all
+
