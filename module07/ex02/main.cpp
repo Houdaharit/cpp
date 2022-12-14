@@ -2,5 +2,6 @@
 
 int main()
 {
-	return 0;
+	unsigned int n = 5;
+	Array<int> array(n);
 }

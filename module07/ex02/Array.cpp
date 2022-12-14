@@ -35,7 +35,7 @@ template <class T> T Array<T>::operator[](int index)
 {
 	if (index < 0 || index >= this->size)
 		throw IndexOutOfBoundsException();
-	return array[index];
+	return this->array[index];
 }
 
 template <class T> Array<T>::~Array()
@@ -44,7 +44,7 @@ template <class T> Array<T>::~Array()
 		delete[] this->array;
 }
 
-template <class T> int Array<T>::size()
+template <class T> int Array<T>::size() const
 {
 	return (this->size);
 }
