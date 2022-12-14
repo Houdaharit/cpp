@@ -1,6 +1,7 @@
 #ifndef ARRAY_HPP
 #define ARRAY_HPP
 #include <iostream>
+#include <exception>
 
 class IndexOutOfBoundsException : public std::exception
 {
@@ -25,6 +26,6 @@ class Array
 	int size() const;
 	void setValues(int, T);
 };
-
 #include "Array.tpp"
+
 #endif
