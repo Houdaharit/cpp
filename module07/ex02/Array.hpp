@@ -14,6 +14,7 @@ template <class T>
 class Array
 {
 	T* array;
+	int _size;
 	public:
 	Array();
 	Array(unsigned int&);
@@ -22,6 +23,8 @@ class Array
 	Array(const Array&);
 	~Array();
 	int size() const;
+	void setValues(int, T);
 };
 
+#include "Array.tpp"
 #endif
