@@ -21,8 +21,9 @@ int main()
 	//string
 
 	Array<std::string> array2(n);
+	std::string str("hello");
 	for (int i = 0; i < array2.size(); i++)
-		array2.setValues(i, "hello");
+		array2.setValues(i, str);
 	for (int i = 0; i < array2.size(); i++ )
 		std::cout << array2[i] << std::endl;
 	try

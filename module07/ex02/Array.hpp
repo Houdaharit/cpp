@@ -24,7 +24,7 @@ class Array
 	Array(const Array&);
 	~Array();
 	int size() const;
-	void setValues(int, T);
+	void setValues(int, T&);
 };
 #include "Array.tpp"
 

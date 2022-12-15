@@ -51,7 +51,7 @@ template <class T> int Array<T>::size() const
 	return (this->_size);
 }
 
-template <class T> void Array<T>::setValues(int index, T value)
+template <class T> void Array<T>::setValues(int index, T& value)
 {
 	if (index < 0 || index >= this->_size)
 		throw IndexOutOfBoundsException();
