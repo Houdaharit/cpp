@@ -7,14 +7,15 @@ int main()
 	Span sp = Span(n);
 	try
 	{
-		sp.addNumber(-6);
-		sp.addNumber(3);
-		sp.addNumber(17);
-		sp.addNumber(9);
-		sp.addNumber(11);
-		sp.addNumber(10);
-		std::cout << sp.shortestSpan() << std::endl;
-		std::cout << sp.longestSpan() << std::endl;
+		/*sp.addNumber(-6);
+		  sp.addNumber(3);
+		  sp.addNumber(17);
+		  sp.addNumber(9);
+		  sp.addNumber(11);
+		  sp.addNumber(10);*/
+		sp.addManyNumbers();
+		std::cout << "shortest: "<< sp.shortestSpan() << std::endl;
+		std::cout << "largest: "<<sp.longestSpan() << std::endl;
 	}
 	catch(std::exception& e)
 	{

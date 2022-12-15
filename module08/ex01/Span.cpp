@@ -52,6 +52,19 @@ int Span::longestSpan()
 	int max = *std::max_element(this->v.begin(), this->v.end());
 	return (abs(max- min));
 }	
+
+void Span::addManyNumbers()
+{
+	srand(time(NULL));
+	int random = rand();
+	while(this->v.size() < n)
+	{
+		addNumber(random);
+		std::cout << random << std::endl;
+		random += n;
+	}
+}
+
 Span::~Span()
 {
 }
