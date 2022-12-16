@@ -24,6 +24,13 @@ Span& Span::operator=(const Span& span)
 	return (*this);
 }
 
+int Span::operator[](int index)
+{
+	if (index < 0 || (size_t)index > this->v.size())
+		throw IndexOutOfBoundsException();
+	return this->v[index];
+}
+
 void Span::addNumber(int number)
 {
 	if (v.size() < this->n)
@@ -53,18 +60,14 @@ int Span::longestSpan()
 	return (abs(max- min));
 }	
 
-void Span::addManyNumbers()
-{
-	srand(time(NULL));
-	int random = rand();
-	while(this->v.size() < n)
-	{
-		addNumber(random);
-		std::cout << random << std::endl;
-		random += n;
-	}
-}
+/*template <typename T> void Span::addManyNumbers(typename T::iterator first, typename T::iterator last)
+  {
+  typename T::iteretor itr;
+  for (itr = first; itr != last; itr++)
+  addNumber(*itr);
 
+  }
+ */
 Span::~Span()
 {
 }
