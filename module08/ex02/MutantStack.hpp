@@ -2,7 +2,6 @@
 #define MUTANSTACK_HPP
 #include <iostream>
 #include <stack>
-#include <queue>
 #include <list>
 
 template <class T>
