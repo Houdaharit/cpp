@@ -5,7 +5,8 @@
 #include <cstring>
 
 std::string erase_space(char*);
-void insert_data(std::string&, std::vector<int>&, std::vector<char>&);
-void error_msg();
+int insert_data(std::string&, std::vector<int>&, std::vector<char>&);
+int error_msg();
+int calcul(std::vector<int>&, std::vector<char>&);
 
 #endif

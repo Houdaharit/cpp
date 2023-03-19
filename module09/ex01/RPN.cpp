@@ -1,9 +1,9 @@
 #include "RPN.hpp"
 
-void	error_msg()
+int error_msg()
 {
 	std::cerr << "Error" << std::endl;
-	exit(1);
+	return (1);
 }
 
 std::string erase_space(char *argv)
@@ -21,11 +21,11 @@ std::string erase_space(char *argv)
 	return (str);
 }
 
-void	insert_data(std::string& str, std::vector<int>& numbers, std::vector<char>& operations)
+int insert_data(std::string& str, std::vector<int>& numbers, std::vector<char>& operations)
 {
 	int i = 1;
 	if (!isdigit(str[0]))
-		error_msg();
+		return error_msg();
 	else
 		numbers.push_back(str[0] - '0');
 	while (str[i])
@@ -35,9 +35,33 @@ void	insert_data(std::string& str, std::vector<int>& numbers, std::vector<char>&
 		else if (i % 2 == 0 && strchr("+*/-", str[i]))
 			operations.push_back(str[i]);
 		else
-			error_msg();
+			return error_msg();
 		i++;
 	}
 	if (numbers.size() -1  != operations.size())
 		error_msg();
+	return 0;
+}
+
+int	operation(int res, int num, char op)
+{
+	if (op == '+')
+		return res + num;
+	else if (op == '-')
+		return res - num;
+	else if (op == '*')
+		return res * num;
+	return res / num;
+}
+
+int	calcul(std::vector<int>& nums, std::vector<char>& op)	
+{
+	int res = 0;
+	int i = 2;
+	size_t j = 1;
+
+	res = operation(nums[0], nums[1], op[0]);
+	while (j < op.size())
+		res = operation(res, nums[i++], op[j++]);
+	return (res);
 }
