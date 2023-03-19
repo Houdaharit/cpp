@@ -27,7 +27,7 @@ void	insert_data(std::string& str, std::vector<int>& numbers, std::vector<char>&
 	if (!isdigit(str[0]))
 		error_msg();
 	else
-		numbers.push_back(str[i] - '0');
+		numbers.push_back(str[0] - '0');
 	while (str[i])
 	{
 		if (i % 2 == 1 && isdigit(str[i]))
