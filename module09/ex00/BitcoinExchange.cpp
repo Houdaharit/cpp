@@ -2,8 +2,32 @@
 #include <map>
 #include <fstream>
 
+std::string trim_front(std::string& str)
+{
+	int i = 0;
+
+	while(str[i] && (str[i] == 32 || str[i] == '\t'))
+		i++;
+	if (str[i])
+		str = str.substr(i, str.size());
+	return str;
+}
+
+std::string trim_back(std::string &str)
+{
+	int i = 0;
+
+	while (str[i] && (str[i] != 32 && str[i] != '\t' && str[i] != '\n'))
+		i++;
+	if (str[i])
+		str = str.substr(0, i);
+	return str;
+}
+
 std::string strtrim(std::string& str)
 {
+	trim_front(str);
+	trim_back(str);
 	return str;
 }
 
@@ -15,11 +39,15 @@ std::multimap<std::string, std::string> insert_data(std::multimap<std::string, s
 
 	pos = line.find("|");
 	date = line.substr(0, pos);
+	date = strtrim(date);
 	if (pos < 0)
 		value = "";
 	else
+	{
 		value = line.substr(pos + 1, line.size());
-	std::cout << value << std::endl;
+		value = strtrim(value);
+	}
+	multimap.insert(std::pair<std::string, std::string>(date, value));
 	return multimap;
 }
 
@@ -28,6 +56,7 @@ int main(int argc, char **argv)
 	std::ifstream file;
 	std::string line;
 	std::multimap<std::string, std::string> multimap;
+	std::multimap<std::string, std::string>::iterator it;
 
 	(void)argc;
 	file.open(argv[1]);
@@ -38,4 +67,10 @@ int main(int argc, char **argv)
 	}
 	while(getline(file, line))
 		insert_data(multimap, line);
+	it = multimap.begin();
+	while(it != multimap.end())
+	{
+		std::cout << it->first << " " << it->second << std::endl;
+		++it;
+	}
 }
