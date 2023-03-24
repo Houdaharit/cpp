@@ -3,7 +3,7 @@
 int error_msg()
 {
 	std::cerr << "Error" << std::endl;
-	return (1);
+	return (-1);
 }
 
 std::string erase_space(char *argv)

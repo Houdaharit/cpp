@@ -10,7 +10,7 @@ int main(int argc, char **argv)
 	if (argc == 2)
 	{
 		str = erase_space(argv[1]);
-		if (insert_data(str, numbers, operations) == 1)
+		if (insert_data(str, numbers, operations) == -1)
 			return (1);
 		res = calcul(numbers, operations);
 		std::cout << res << std::endl;
