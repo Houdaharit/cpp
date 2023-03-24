@@ -21,7 +21,7 @@ std::string erase_space(char *argv)
 	return (str);
 }
 
-int insert_data(std::string& str, std::vector<int>& numbers, std::vector<char>& operations)
+int insert_data(std::string& str, std::list<int>& numbers, std::list<char>& operations)
 {
 	int i = 1;
 	if (!isdigit(str[0]))
@@ -39,7 +39,7 @@ int insert_data(std::string& str, std::vector<int>& numbers, std::vector<char>& 
 		i++;
 	}
 	if (numbers.size() -1  != operations.size())
-		error_msg();
+		return error_msg();
 	return 0;
 }
 
@@ -54,14 +54,21 @@ int	operation(int res, int num, char op)
 	return res / num;
 }
 
-int	calcul(std::vector<int>& nums, std::vector<char>& op)	
+int	calcul(std::list<int>& nums, std::list<char>& op)	
 {
 	int res = 0;
-	int i = 2;
-	size_t j = 1;
+	int num;
 
-	res = operation(nums[0], nums[1], op[0]);
-	while (j < op.size())
-		res = operation(res, nums[i++], op[j++]);
+	num = nums.front();
+	nums.pop_front();
+	res = operation(num, nums.front(), op.front());
+	nums.pop_front();
+	op.pop_front();
+	while (op.size() > 0)
+	{
+		res = operation(res, nums.front(), op.front());
+		op.pop_front();
+		nums.pop_front();
+	}
 	return (res);
 }

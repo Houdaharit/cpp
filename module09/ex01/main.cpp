@@ -3,8 +3,8 @@
 int main(int argc, char **argv)
 {
 	std::string str;
-	std::vector<int> numbers;
-	std::vector<char> operations;
+	std::list<int> numbers;
+	std::list<char> operations;
 	int res;
 
 	if (argc == 2)

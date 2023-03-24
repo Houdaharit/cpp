@@ -1,12 +1,12 @@
 #ifndef RNP_HPP
 #define RNP_HPP
 #include <iostream>
-#include <vector>
+#include <list>
 #include <cstring>
 
 std::string erase_space(char*);
-int insert_data(std::string&, std::vector<int>&, std::vector<char>&);
+int insert_data(std::string&, std::list<int>&, std::list<char>&);
 int error_msg();
-int calcul(std::vector<int>&, std::vector<char>&);
+int calcul(std::list<int>&, std::list<char>&);
 
 #endif
