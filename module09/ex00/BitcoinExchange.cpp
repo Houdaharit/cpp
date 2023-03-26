@@ -37,7 +37,7 @@ std::multimap<std::string, std::string> insert_data(std::multimap<std::string, s
 	std::string date;
 	std::string value;
 
-	pos = line.find("|");
+	pos = line.find(",");
 	date = line.substr(0, pos);
 	date = strtrim(date);
 	if (pos < 0)
