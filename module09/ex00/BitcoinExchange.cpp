@@ -31,31 +31,33 @@ std::string strtrim(std::string& str)
 	return str;
 }
 
-std::map<std::string, std::string> insert_data(std::map<std::string, std::string>& map, std::string line, const char* sep)
+std::map<std::string, int> insert_data(std::map<std::string, int>& map, std::string line, const char* sep)
 {
 	int pos;
 	std::string date;
-	std::string value;
+	std::string temp;
+	int value;
 
 	pos = line.find(sep);
 	date = line.substr(0, pos);
 	date = strtrim(date);
 	if (pos < 0)
-		value = "";
+		value = 0;
 	else
 	{
-		value = line.substr(pos + 1, line.size());
-		value = strtrim(value);
+		temp = line.substr(pos + 1, line.size());
+		temp = strtrim(temp);
+		value = atoi(temp.c_str());
 	}
-	map.insert(std::pair<std::string, std::string>(date, value));
+	map.insert(std::pair<std::string, int>(date, value));
 	return map;
 }
 
-std::map<std::string, std::string> database_data(void)
+std::map<std::string, int> database_data(void)
 {
 	std::ifstream database;
 	std::string line;
-	std::map<std::string, std::string> data;
+	std::map<std::string, int> data;
 
 	database.open("data.csv");
 	if (!database)
@@ -82,38 +84,38 @@ void	date_value(std::string& line, std::string& date, int& value)
 	{
 		temp = line.substr(pos + 1, line.size());
 		temp = strtrim(temp);
-		value = stoi(temp);
+		value = atoi(temp.c_str());
 	}
 }
 
-void	search_exchange_rate(std::string& date, int& value, std::map<std::string, std::string>& data)
+void	search_exchange_rate(std::string& date, int& value, std::map<std::string, int>& data)
 {
-	std::map<std::string,std::string>::iterator it;
-	std::map<std::string,std::string>::iterator temp;
+	std::map<std::string, int>::iterator it;
+	std::map<std::string, int>::iterator temp;
 
 	it = data.begin();
 	while (it != data.end() && it->first != date)
 		++it;
 	if (it->first == date)
-		std::cout << date << " => " << value << " = " << value * stoi(it->second) << std::endl;
+		std::cout << date << " => " << value << " = " << value * it->second << std::endl;
 	else
 	{
 		it = data.begin();
 		int min = INT_MAX;
 		while (it != data.end())
 		{
-			if (abs(date.compare(it->second)) < min)
+			if (abs(date.compare(it->first)) < min)
 			{
-				min = abs(date.compare(it->second));
+				min = abs(date.compare(it->first));
 				temp = it;
 			}
 			++it;
 		}
-		std::cout << date << " => " << value << " = " << value * stoi(temp->second) << std::endl;
+		std::cout << date << " => " << value << " = " << value * temp->second << std::endl;
 	}
 }
 
-void	display(char *filename, std::map<std::string, std::string>& data)
+void	display(char *filename, std::map<std::string, int>& data)
 {
 	std::ifstream file;
 	std::string line;
@@ -130,7 +132,7 @@ void	display(char *filename, std::map<std::string, std::string>& data)
 	{
 		date_value(line, date, value);
 		/*if (check_value_date(date, value) == -1)
-			continue;*/
+		  continue;*/
 		search_exchange_rate(date, value, data);
 	}
 }
@@ -139,6 +141,9 @@ int main(int argc, char **argv)
 {
 	if (argc > 1)
 	{
+		std::map<std::string, int> data;
+		data = database_data();
+		display(argv[1], data);
 	}
 	return 0;
 }
