@@ -68,41 +68,48 @@ std::map<std::string, std::string> database_data(void)
 	return (data);
 }
 
-void	date_value(std::string& line, td::string& date, int& value)
+void	date_value(std::string& line, std::string& date, int& value)
 {
 	int pos;
+	std::string temp;
 
-	pos = line.find(sep);
+	pos = line.find("|");
 	date = line.substr(0, pos);
 	date = strtrim(date);
 	if (pos < 0)
-		value = "";
+		value = 0;
 	else
 	{
-		value = line.substr(pos + 1, line.size());
-		value = strtrim(value);
+		temp = line.substr(pos + 1, line.size());
+		temp = strtrim(temp);
+		value = stoi(temp);
 	}
 }
 
-void	search_exchange_rate(int& date, std::string& date, std::map<std::string, std::string>& date)
+void	search_exchange_rate(std::string& date, int& value, std::map<std::string, std::string>& data)
 {
 	std::map<std::string,std::string>::iterator it;
+	std::map<std::string,std::string>::iterator temp;
 
-	it = date.begin();
-	while (it != data.end() && data.first != date)
+	it = data.begin();
+	while (it != data.end() && it->first != date)
 		++it;
-	if (it == data.end())
+	if (it->first == date)
+		std::cout << date << " => " << value << " = " << value * stoi(it->second) << std::endl;
+	else
 	{
 		it = data.begin();
-		if (it->first == date)
-			std::cout << date << " => " << value << " = " << value * it->second << std::endl;
-		else
+		int min = INT_MAX;
+		while (it != data.end())
 		{
-			int min = INT_MAX;
-			while
-			if (abs(date - it->first) < min)
-				min = abs(date - it->first);
+			if (abs(date.compare(it->second)) < min)
+			{
+				min = abs(date.compare(it->second));
+				temp = it;
+			}
+			++it;
 		}
+		std::cout << date << " => " << value << " = " << value * stoi(temp->second) << std::endl;
 	}
 }
 
@@ -113,8 +120,8 @@ void	display(char *filename, std::map<std::string, std::string>& data)
 	std::string date;
 	int value;
 
-	line.open(filename);
-	if (!line)
+	file.open(filename);
+	if (!file)
 	{
 		std::cerr << "Error: could not open file." << std::endl;
 		exit(1);
@@ -122,8 +129,16 @@ void	display(char *filename, std::map<std::string, std::string>& data)
 	while(getline(file, line))
 	{
 		date_value(line, date, value);
-		if (check_value_date(date, value) == -1)
-			continue;
+		/*if (check_value_date(date, value) == -1)
+			continue;*/
 		search_exchange_rate(date, value, data);
 	}
+}
+
+int main(int argc, char **argv)
+{
+	if (argc > 1)
+	{
+	}
+	return 0;
 }
