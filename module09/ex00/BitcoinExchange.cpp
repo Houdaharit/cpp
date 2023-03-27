@@ -54,21 +54,37 @@ std::multimap<std::string, std::string> insert_data(std::multimap<std::string, s
 int main(int argc, char **argv)
 {
 	std::ifstream file;
+	std::ifstream database;
 	std::string line;
-	std::multimap<std::string, std::string> multimap;
+	std::multimap<std::string, std::string> data;
 	std::multimap<std::string, std::string>::iterator it;
 
-	(void)argc;
-	file.open(argv[1]);
-	if (!file)
+	(void)argc, (void)argv;
+	/*file.open(argv[1]);
+	  if (!file)
+	  {
+	  std::cerr << "Error: could not open file!" << std::endl;
+	  return (1);
+	  }
+	  while(getline(file, line))
+	  insert_data(multimap, line);
+	  it = multimap.begin();
+	  while(it != multimap.end())
+	  {
+	  std::cout << it->first << " " << it->second << std::endl;
+	  ++it;
+	  }*/
+
+	database.open("data.csv");
+	if (!database)
 	{
-		std::cerr << "Error: could not open file!" << std::endl;
-		return (1);
+		std::cerr << "Error: could not open file." << std::endl;
+		return 1;	
 	}
-	while(getline(file, line))
-		insert_data(multimap, line);
-	it = multimap.begin();
-	while(it != multimap.end())
+	while(getline(database, line))
+		insert_data(data, line);
+	it = data.begin();
+	while(it != data.end())
 	{
 		std::cout << it->first << " " << it->second << std::endl;
 		++it;
