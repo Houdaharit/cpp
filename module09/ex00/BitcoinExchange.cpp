@@ -1,6 +1,7 @@
 #include <iostream>
 #include <map>
 #include <fstream>
+#include <limits.h>
 
 std::string trim_front(std::string& str)
 {
@@ -31,12 +32,12 @@ std::string strtrim(std::string& str)
 	return str;
 }
 
-std::map<std::string, int> insert_data(std::map<std::string, int>& map, std::string line, const char* sep)
+std::map<std::string, float> insert_data(std::map<std::string, float>& map, std::string line, const char* sep)
 {
 	int pos;
 	std::string date;
 	std::string temp;
-	int value;
+	float value;
 
 	pos = line.find(sep);
 	date = line.substr(0, pos);
@@ -47,17 +48,17 @@ std::map<std::string, int> insert_data(std::map<std::string, int>& map, std::str
 	{
 		temp = line.substr(pos + 1, line.size());
 		temp = strtrim(temp);
-		value = atoi(temp.c_str());
+		value = atof(temp.c_str());
 	}
-	map.insert(std::pair<std::string, int>(date, value));
+	map.insert(std::pair<std::string, float>(date, value));
 	return map;
 }
 
-std::map<std::string, int> database_data(void)
+std::map<std::string, float> database_data(void)
 {
 	std::ifstream database;
 	std::string line;
-	std::map<std::string, int> data;
+	std::map<std::string, float> data;
 
 	database.open("data.csv");
 	if (!database)
@@ -70,7 +71,7 @@ std::map<std::string, int> database_data(void)
 	return (data);
 }
 
-void	date_value(std::string& line, std::string& date, int& value)
+void	date_value(std::string& line, std::string& date, float& value)
 {
 	int pos;
 	std::string temp;
@@ -84,14 +85,14 @@ void	date_value(std::string& line, std::string& date, int& value)
 	{
 		temp = line.substr(pos + 1, line.size());
 		temp = strtrim(temp);
-		value = atoi(temp.c_str());
+		value = atof(temp.c_str());
 	}
 }
 
-void	search_exchange_rate(std::string& date, int& value, std::map<std::string, int>& data)
+void	search_exchange_rate(std::string& date, float& value, std::map<std::string, float>& data)
 {
-	std::map<std::string, int>::iterator it;
-	std::map<std::string, int>::iterator temp;
+	std::map<std::string, float>::iterator it;
+	std::map<std::string, float>::iterator temp;
 
 	it = data.begin();
 	while (it != data.end() && it->first != date)
@@ -101,26 +102,50 @@ void	search_exchange_rate(std::string& date, int& value, std::map<std::string, i
 	else
 	{
 		it = data.begin();
-		int min = INT_MAX;
-		while (it != data.end())
+		temp = it;
+		while (it != data.end() && date > it->first)
 		{
-			if (abs(date.compare(it->first)) < min)
-			{
-				min = abs(date.compare(it->first));
-				temp = it;
-			}
+			temp = it;
 			++it;
 		}
 		std::cout << date << " => " << value << " = " << value * temp->second << std::endl;
 	}
 }
 
-void	display(char *filename, std::map<std::string, int>& data)
+int	check_value_date(std::string& date, float& value)
+{
+	int check = -1;
+	int	pos;
+	std::string tmp[3];
+	tmp[0] = "hello";
+	tmp[1] = "everyone";
+	tmp[2] = "hi";
+	int index = 0;
+
+	(void)date;
+	if (value < 0)
+		std::cerr << "Error: not a positive value." << std::endl;
+	else if (value > 100)
+		std::cerr << "Error: too large value." << std::endl;
+	else
+		check = 1;
+	pos = date.find("-");
+	while (index < 3)
+	{
+		tmp[index] = date.substr()
+		std::cout << tmp[index] << std::endl;
+		index++;
+	}
+	return check;
+}
+
+
+void	display(char *filename, std::map<std::string, float>& data)
 {
 	std::ifstream file;
 	std::string line;
 	std::string date;
-	int value;
+	float value;
 
 	file.open(filename);
 	if (!file)
@@ -131,17 +156,18 @@ void	display(char *filename, std::map<std::string, int>& data)
 	while(getline(file, line))
 	{
 		date_value(line, date, value);
-		/*if (check_value_date(date, value) == -1)
-		  continue;*/
+		if (check_value_date(date, value) == -1)
+		  continue;
 		search_exchange_rate(date, value, data);
 	}
 }
 
 int main(int argc, char **argv)
 {
+	(void)argv;
 	if (argc > 1)
 	{
-		std::map<std::string, int> data;
+		std::map<std::string, float> data;
 		data = database_data();
 		display(argv[1], data);
 	}
