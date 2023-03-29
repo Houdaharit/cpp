@@ -121,6 +121,16 @@ void	search_exchange_rate(std::string& date, float& value, std::map<std::string,
 	}
 }
 
+int	check_date(std::string date[])
+{
+	if (atoi(date[0].c_str()) <= 0 || atoi(date[0].c_str()) > 9999)
+		return -1;
+	if (atoi(date[1].c_str()) <= 0 || atoi(date[1].c_str()) > 12)
+		return -1;
+	if (atoi(date[2].c_str()) <= 0 || atoi(date[2].c_str()) > 31)
+		return -1;
+	return 1;
+}
 int	check_value_date(std::string date, float& value)
 {
 	int check = -1;
@@ -164,19 +174,19 @@ void	display(char *filename, std::map<std::string, float>& data)
 	{
 		date_value(line, date, value);
 		if (check_value_date(date, value) == -1)
-		  continue;
+			continue;
 		search_exchange_rate(date, value, data);
 	}
 }
 
 /*int main(int argc, char **argv)
-{
-	(void)argv;
-	if (argc > 1)
-	{
-		std::map<std::string, float> data;
-		data = database_data();
-		display(argv[1], data);
-	}
-	return 0;
-}*/
+  {
+  (void)argv;
+  if (argc > 1)
+  {
+  std::map<std::string, float> data;
+  data = database_data();
+  display(argv[1], data);
+  }
+  return 0;
+  }*/
