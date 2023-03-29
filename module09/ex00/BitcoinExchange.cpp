@@ -3,6 +3,14 @@
 #include <fstream>
 #include <limits.h>
 
+void	remove_comma(std::string& value)
+{
+	int pos;
+
+	pos = value.find(",");
+	value[pos] = '.';
+}
+
 std::string trim_front(std::string& str)
 {
 	int i = 0;
@@ -85,6 +93,7 @@ void	date_value(std::string& line, std::string& date, float& value)
 	{
 		temp = line.substr(pos + 1, line.size());
 		temp = strtrim(temp);
+		remove_comma(temp);
 		value = atof(temp.c_str());
 	}
 }
@@ -112,14 +121,11 @@ void	search_exchange_rate(std::string& date, float& value, std::map<std::string,
 	}
 }
 
-int	check_value_date(std::string& date, float& value)
+int	check_value_date(std::string date, float& value)
 {
 	int check = -1;
 	int	pos;
 	std::string tmp[3];
-	tmp[0] = "hello";
-	tmp[1] = "everyone";
-	tmp[2] = "hi";
 	int index = 0;
 
 	(void)date;
@@ -132,8 +138,9 @@ int	check_value_date(std::string& date, float& value)
 	pos = date.find("-");
 	while (index < 3)
 	{
-		tmp[index] = date.substr()
-		std::cout << tmp[index] << std::endl;
+		tmp[index] = date.substr(0, pos);
+		date = date.substr(pos + 1, date.size());
+		pos= date.find("-");
 		index++;
 	}
 	return check;
@@ -162,7 +169,7 @@ void	display(char *filename, std::map<std::string, float>& data)
 	}
 }
 
-int main(int argc, char **argv)
+/*int main(int argc, char **argv)
 {
 	(void)argv;
 	if (argc > 1)
@@ -172,4 +179,4 @@ int main(int argc, char **argv)
 		display(argv[1], data);
 	}
 	return 0;
-}
+}*/
