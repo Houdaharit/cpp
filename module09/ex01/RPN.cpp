@@ -58,6 +58,7 @@ int	calcul(std::list<int>& nums, std::list<char>& op)
 {
 	int res = 0;
 	int num;
+	char opr;
 
 	num = nums.front();
 	nums.pop_front();
@@ -66,6 +67,13 @@ int	calcul(std::list<int>& nums, std::list<char>& op)
 	op.pop_front();
 	while (op.size() > 0)
 	{
+		num = nums.front();
+		opr = op.front();
+		if (opr == '/' && num == 0)
+		{
+			std::cerr << "Error" << std::endl;
+			exit(1);
+		}
 		res = operation(res, nums.front(), op.front());
 		op.pop_front();
 		nums.pop_front();
