@@ -79,7 +79,7 @@ std::map<std::string, float> database_data(void)
 	return (data);
 }
 
-void	date_value(std::string& line, std::string& date, float& value)
+int	date_value(std::string& line, std::string& date, float& value)
 {
 	int pos;
 	std::string temp;
@@ -87,6 +87,8 @@ void	date_value(std::string& line, std::string& date, float& value)
 	pos = line.find("|");
 	date = line.substr(0, pos);
 	date = strtrim(date);
+	if (date == "date")
+		return 0;
 	if (pos < 0)
 		value = 0;
 	else
@@ -94,8 +96,11 @@ void	date_value(std::string& line, std::string& date, float& value)
 		temp = line.substr(pos + 1, line.size());
 		temp = strtrim(temp);
 		remove_comma(temp);
+		if (temp == "value")
+			return 0;
 		value = atof(temp.c_str());
 	}
+	return 1;
 }
 
 void	search_exchange_rate(std::string& date, float& value, std::map<std::string, float>& data)
@@ -193,8 +198,7 @@ void	display(char *filename, std::map<std::string, float>& data)
 	}
 	while(getline(file, line))
 	{
-		date_value(line, date, value);
-		if (check_value_date(date, value) == -1)
+		if (!date_value(line, date, value) || check_value_date(date, value) == -1)
 			continue;
 		search_exchange_rate(date, value, data);
 	}
