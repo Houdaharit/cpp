@@ -117,26 +117,42 @@ void	search_exchange_rate(std::string& date, float& value, std::map<std::string,
 			temp = it;
 			++it;
 		}
-		std::cout << date << " => " << value << " = " << value * temp->second << std::endl;
+		if (value > 0)
+			std::cout << date << " => " << value << " = " << value * temp->second << std::endl;
+		else
+			std::cerr << "Error: No value or NULL value" << std::endl;
 	}
 }
 
 int	check_date(std::string date[])
 {
-	if (atoi(date[0].c_str()) <= 0 || atoi(date[0].c_str()) > 9999)
+	int day = atoi(date[2].c_str());
+	int month = atoi(date[1].c_str());
+	int year = atoi(date[0].c_str());
+
+	if (year <= 0 || year > 9999)
 		return -1;
-	if (atoi(date[1].c_str()) <= 0 || atoi(date[1].c_str()) > 12)
+	if (month <= 0 || month > 12)
 		return -1;
-	if (atoi(date[2].c_str()) <= 0 || atoi(date[2].c_str()) > 31)
+	if (day <= 0 || day > 31)
 		return -1;
+	else if ((month == 2 || month == 4 || month == 6 || month == 9 || month == 11 ) && day == 31)
+		return -1;
+	else if (month == 2)
+	{
+		if (year % 4 != 0 && day == 29)
+			return -1;
+	}
 	return 1;
 }
+
 int	check_value_date(std::string date, float& value)
 {
 	int check = -1;
 	int	pos;
 	std::string tmp[3];
 	int index = 0;
+	std::string temp(date);
 
 	(void)date;
 	if (value < 0)
@@ -148,10 +164,15 @@ int	check_value_date(std::string date, float& value)
 	pos = date.find("-");
 	while (index < 3)
 	{
-		tmp[index] = date.substr(0, pos);
-		date = date.substr(pos + 1, date.size());
-		pos= date.find("-");
+		tmp[index] = temp.substr(0, pos);
+		temp = temp.substr(pos + 1, date.size());
+		pos = temp.find("-");
 		index++;
+	}
+	if (check_date(tmp) == -1)
+	{
+		std::cerr << "Error: bad input => " << date << std::endl;
+		check = -1;
 	}
 	return check;
 }
