@@ -96,18 +96,18 @@ void merge_d(std::deque<int>& deq, std::deque<int>& temp, int f, int m, int l)
 		deq[i] = temp[i];
 }
 
-void merge_insert_d(std::deque<int>& deq, std::deque<int>& temp, int l, int r, int threshold)
+void merge_insert_d(std::deque<int>& deq, std::deque<int>& temp, int f, int l, int threshold)
 {
-	if (l < r)
+	if (f < l)
 	{
-		if ((r - l) <= threshold)
-			insert_sort_d(deq, l, r);
+		if ((l - f) <= threshold)
+			insert_sort_d(deq, f, l);
 		else
 		{
-			int m = (l + r) / 2;
-			merge_insert_d(deq, temp, l, m, threshold);
-			merge_insert_d(deq, temp, m + 1, r, threshold);
-			merge_d(deq, temp, l, m, r);
+			int m = (f + l) / 2;
+			merge_insert_d(deq, temp, f, m, threshold);
+			merge_insert_d(deq, temp, m + 1, l, threshold);
+			merge_d(deq, temp, f, m, l);
 		}
 	}
 }

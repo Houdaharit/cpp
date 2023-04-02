@@ -67,6 +67,22 @@ void	display_vector(std::vector<int>& v)
 	}
 }
 
+void	display_deque(std::deque<int>& deq)
+{
+	if (deq.size() > 20)
+	{
+		for(size_t i = 0; i < 20; i++)
+			std::cout << deq[i] << " ";
+		std::cout << " [...]" << std::endl;
+	}
+	else
+	{
+		for(size_t i = 0; i < deq.size(); i++)
+			std::cout << deq[i] << " ";
+		std::cout << std::endl;
+	}
+}
+
 void	sort_vector(int argc, char **argv)
 {
 	std::vector<int> v;
