@@ -1,15 +1,15 @@
 #include "PmergeMe.hpp"
 
-void insertion_sort_v(std::vector<int>& vec, int l, int r)
+void insert_sort_v(std::vector<int>& vec, int f, int l)
 {
 	double	tmp;
 	int		j;
 
-	for (int i = l; i <= r; i++)
+	for (int i = f; i <= l; i++)
 	{
 		tmp = vec[i];
 		j = i;
-		while ((j > l) && (vec[j - 1] > tmp))
+		while ((j > f) && (vec[j - 1] > tmp))
 		{
 			vec[j] = vec[j - 1];
 			j--;
@@ -18,97 +18,96 @@ void insertion_sort_v(std::vector<int>& vec, int l, int r)
 	}
 }
 
-void merge_v(std::vector<int>& arr, std::vector<int>& temp, int l, int m, int r)
+void merge_v(std::vector<int>& vec, std::vector<int>& temp, int f, int m, int l)
 {
-	int i = l;
+	int i = f;
 	int j = m + 1;
-	int k = l;
+	int k = f;
 
-	while ((i <= m) && (j <= r))
+	while ((i <= m) && (j <= l))
 	{
-		if (arr[i] < arr[j])
-			temp[k] =  arr[i++];
+		if (vec[i] < vec[j])
+			temp[k] =  vec[i++];
 		else
-			temp[k] = arr[j++];
+			temp[k] = vec[j++];
 		k++;
 	}
-	while(j <= r)
-		temp[k++] = arr[j++];
+	while(j <= l)
+		temp[k++] = vec[j++];
 	while(i <= m)
-		temp[k++] = arr[i++];
-	for (i = l; i <= r; i++)
-		arr[i] = temp[i];
+		temp[k++] = vec[i++];
+	for (i = f; i <= l; i++)
+		vec[i] = temp[i];
 }
 
-void mergesort_v(std::vector<int>& arr, std::vector<int>& temp, int l, int r, int threshold)
+void merge_insert_v(std::vector<int>& vec, std::vector<int>& temp, int f, int l, int k)
 {
-	if (l < r)
+	if (f < l)
 	{
-		if ((r - l) <= threshold)
-			insertion_sort_v(arr, l, r);
+		if ((l - f) <= k)
+			insert_sort_v(vec, f, l);
 		else
 		{
-			int m = (l + r) / 2;
-			mergesort_v(arr, temp, l, m, threshold);
-			mergesort_v(arr, temp, m + 1, r, threshold);
-			merge_v(arr, temp, l, m, r);
+			int m = (f + l) / 2;
+			merge_insert_v(vec, temp, f, m, k);
+			merge_insert_v(vec, temp, m + 1, l, k);
+			merge_v(vec, temp, f, m, l);
 		}
 	}
 }
 
-void insertion_sort_d(std::deque<int>& vec, int l, int r)
+void insert_sort_d(std::deque<int>& deq, int f, int l)
 {
 	double	tmp;
 	int		j;
 
-	for (int i = l; i <= r; i++)
+	for (int i = f; i <= l; i++)
 	{
-		tmp = vec[i];
+		tmp = deq[i];
 		j = i;
-		while ((j > l) && (vec[j - 1] > tmp))
+		while ((j > f) && (deq[j - 1] > tmp))
 		{
-			vec[j] = vec[j - 1];
+			deq[j] = deq[j - 1];
 			j--;
 		}
-		vec[j] = tmp;
+		deq[j] = tmp;
 	}
 }
 
-void merge_d(std::deque<int>& arr, std::deque<int>& temp, int l, int m, int r)
+void merge_d(std::deque<int>& deq, std::deque<int>& temp, int f, int m, int l)
 {
-	int i = l;
+	int i = f;
 	int j = m + 1;
-	int k = l;
+	int k = f;
 
-	std::vector<int>::iterator it;
-	while ((i <= m) && (j <= r))
+	while ((i <= m) && (j <= l))
 	{
-		if (arr[i] < arr[j])
-			temp[k] =  arr[i++];
+		if (deq[i] < deq[j])
+			temp[k] =  deq[i++];
 		else
-			temp[k] = arr[j++];
+			temp[k] = deq[j++];
 		k++;
 	}
-	while(j <= r)
-		temp[k++] = arr[j++];
+	while(j <= l)
+		temp[k++] = deq[j++];
 	while(i <= m)
-		temp[k++] = arr[i++];
-	for (i = l; i <= r; i++)
-		arr[i] = temp[i];
+		temp[k++] = deq[i++];
+	for (i = f; i <= l; i++)
+		deq[i] = temp[i];
 }
 
-void mergesort_d(std::deque<int>& arr, std::deque<int>& temp, int l, int r, int threshold)
+void merge_insert_d(std::deque<int>& deq, std::deque<int>& temp, int l, int r, int threshold)
 {
 	if (l < r)
 	{
 		if ((r - l) <= threshold)
-			insertion_sort_d(arr, l, r);
+			insert_sort_d(deq, l, r);
 		else
 		{
 			int m = (l + r) / 2;
-			mergesort_d(arr, temp, l, m, threshold);
-			mergesort_d(arr, temp, m + 1, r, threshold);
-			merge_d(arr, temp, l, m, r);
+			merge_insert_d(deq, temp, l, m, threshold);
+			merge_insert_d(deq, temp, m + 1, r, threshold);
+			merge_d(deq, temp, l, m, r);
 		}
 	}
 }

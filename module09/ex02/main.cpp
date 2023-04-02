@@ -79,7 +79,7 @@ void	sort_vector(int argc, char **argv)
 	display_vector(v);
 	std::vector<int> temp(v.size(), 0);
 	gettimeofday(&start, NULL);
-	mergesort_v(v, temp, 0, v.size() - 1, 2);
+	merge_insert_v(v, temp, 0, v.size() - 1, 2);
 	gettimeofday(&end_t, NULL);
 	time = ((end_t.tv_sec * 1000000) + end_t.tv_usec) - ((start.tv_sec * 1000000) + start.tv_usec);
 	std::cout << "After: "; 
@@ -97,7 +97,7 @@ void	sort_deque(int argc, char **argv)
 	insert_deque(d, argc, argv);
 	std::deque<int> temp(d.size(), 0);
 	gettimeofday(&start, NULL);
-	mergesort_d(d, temp, 0, d.size() - 1, 2);
+	merge_insert_d(d, temp, 0, d.size() - 1, 2);
 	gettimeofday(&end_t, NULL);
 	time = ((end_t.tv_sec * 1000000) + end_t.tv_usec) - ((start.tv_sec * 1000000) + start.tv_usec);
 	std::cout << "Time to process a range of " << d.size() << " elements with std::deque: " << time << " us" << std::endl;
