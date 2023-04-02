@@ -110,7 +110,7 @@ void	search_exchange_rate(std::string& date, float& value, std::map<std::string,
 	it = data.begin();
 	while (it != data.end() && it->first != date)
 		++it;
-	if (it->first == date)
+	if (it != data.end() && it->first == date)
 		std::cout << date << " => " << value << " = " << value * it->second << std::endl;
 	else
 	{
