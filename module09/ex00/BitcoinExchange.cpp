@@ -1,7 +1,4 @@
-#include <iostream>
-#include <map>
-#include <fstream>
-#include <limits.h>
+#include "BitcoinExchange.hpp"
 
 void	remove_comma(std::string& value)
 {
@@ -85,6 +82,8 @@ int	date_value(std::string& line, std::string& date, float& value)
 	std::string temp;
 
 	pos = line.find("|");
+	if (pos < 0)
+		pos = line.find(",");
 	date = line.substr(0, pos);
 	date = strtrim(date);
 	if (date == "date")
@@ -162,7 +161,7 @@ int	check_value_date(std::string date, float& value)
 	(void)date;
 	if (value < 0)
 		std::cerr << "Error: not a positive value." << std::endl;
-	else if (value > 100)
+	else if (value > 1000)
 		std::cerr << "Error: too large value." << std::endl;
 	else
 		check = 1;
@@ -183,7 +182,7 @@ int	check_value_date(std::string date, float& value)
 }
 
 
-void	display(char *filename, std::map<std::string, float>& data)
+void	display(char *filename)
 {
 	std::ifstream file;
 	std::string line;
@@ -196,6 +195,7 @@ void	display(char *filename, std::map<std::string, float>& data)
 		std::cerr << "Error: could not open file." << std::endl;
 		exit(1);
 	}
+	std::map<std::string, float> data = database_data();
 	while(getline(file, line))
 	{
 		if (!date_value(line, date, value) || check_value_date(date, value) == -1)
@@ -203,15 +203,3 @@ void	display(char *filename, std::map<std::string, float>& data)
 		search_exchange_rate(date, value, data);
 	}
 }
-
-/*int main(int argc, char **argv)
-  {
-  (void)argv;
-  if (argc > 1)
-  {
-  std::map<std::string, float> data;
-  data = database_data();
-  display(argv[1], data);
-  }
-  return 0;
-  }*/
