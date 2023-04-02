@@ -2,9 +2,7 @@
 
 int main(int argc, char **argv)
 {
-    if (argc > 1)
-    {
-        display(argv[1]);
-    }
-    return 0;
+	(void)argc;
+	display(argv[1]);
+	return 0;
 }

@@ -24,15 +24,16 @@ std::string erase_space(char *argv)
 int insert_data(std::string& str, std::list<int>& numbers, std::list<char>& operations)
 {
 	int i = 1;
+
 	if (!isdigit(str[0]))
 		return error_msg();
 	else
 		numbers.push_back(str[0] - '0');
 	while (str[i])
 	{
-		if (i % 2 == 1 && isdigit(str[i]))
+		if (isdigit(str[i]))
 			numbers.push_back(str[i] - '0');
-		else if (i % 2 == 0 && strchr("+*/-", str[i]))
+		else if (strchr("+*/-", str[i]))
 			operations.push_back(str[i]);
 		else
 			return error_msg();

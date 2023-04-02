@@ -15,4 +15,5 @@ void sort_vector(int argc, char **argv);
 void sort_deque(int argc, char **argv);
 void display_vector(std::vector<int>& v);
 void display_deque(std::deque<int>& q);
+int check_input(int argc, char **argv);
 #endif

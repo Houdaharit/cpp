@@ -188,6 +188,7 @@ void	display(char *filename)
 	std::string line;
 	std::string date;
 	float value;
+	int i = 0;
 
 	file.open(filename);
 	if (!file)
@@ -201,5 +202,8 @@ void	display(char *filename)
 		if (!date_value(line, date, value) || check_value_date(date, value) == -1)
 			continue;
 		search_exchange_rate(date, value, data);
+		i++;
 	}
+	if (i == 0)
+		std::cout << "Empty input file." << std::endl;
 }
