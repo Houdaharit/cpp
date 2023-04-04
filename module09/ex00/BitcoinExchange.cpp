@@ -37,24 +37,19 @@ std::string strtrim(std::string& str)
 	return str;
 }
 
-std::map<std::string, float> insert_data(std::map<std::string, float>& map, std::string line, const char* sep)
+std::map<std::string, float> insert_data(std::map<std::string, float>& map, std::string line)
 {
 	int pos;
 	std::string date;
 	std::string temp;
 	float value;
 
-	pos = line.find(sep);
+	pos = line.find(",");
 	date = line.substr(0, pos);
 	date = strtrim(date);
-	if (pos < 0)
-		value = 0;
-	else
-	{
-		temp = line.substr(pos + 1, line.size());
-		temp = strtrim(temp);
-		value = atof(temp.c_str());
-	}
+	temp = line.substr(pos + 1, line.size());
+	temp = strtrim(temp);
+	value = atof(temp.c_str());
 	map.insert(std::pair<std::string, float>(date, value));
 	return map;
 }
@@ -74,32 +69,6 @@ std::map<std::string, float> database_data(void)
 	while(getline(database, line))
 		insert_data(data, line, ",");
 	return (data);
-}
-
-int	date_value(std::string& line, std::string& date, float& value)
-{
-	int pos;
-	std::string temp;
-
-	pos = line.find("|");
-	if (pos < 0)
-		pos = line.find(",");
-	date = line.substr(0, pos);
-	date = strtrim(date);
-	if (date == "date")
-		return 0;
-	if (pos < 0)
-		value = 0;
-	else
-	{
-		temp = line.substr(pos + 1, line.size());
-		temp = strtrim(temp);
-		remove_comma(temp);
-		if (temp == "value")
-			return 0;
-		value = atof(temp.c_str());
-	}
-	return 1;
 }
 
 void	search_exchange_rate(std::string& date, float& value, std::map<std::string, float>& data)
@@ -150,36 +119,6 @@ int	check_date(std::string date[])
 	return 1;
 }
 
-int	check_value_date(std::string date, float& value)
-{
-	int check = -1;
-	int	pos;
-	std::string tmp[3];
-	int index = 0;
-	std::string temp(date);
-
-	(void)date;
-	if (value < 0)
-		std::cerr << "Error: not a positive value." << std::endl;
-	else if (value > 1000)
-		std::cerr << "Error: too large value." << std::endl;
-	else
-		check = 1;
-	pos = date.find("-");
-	while (index < 3)
-	{
-		tmp[index] = temp.substr(0, pos);
-		temp = temp.substr(pos + 1, date.size());
-		pos = temp.find("-");
-		index++;
-	}
-	if (check_date(tmp) == -1)
-	{
-		std::cerr << "Error: bad input => " << date << std::endl;
-		check = -1;
-	}
-	return check;
-}
 
 
 void	display(char *filename)
