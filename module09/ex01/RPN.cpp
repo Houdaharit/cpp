@@ -3,7 +3,7 @@
 int error_msg()
 {
 	std::cerr << "Error" << std::endl;
-	return (-1);
+	exit(1);
 }
 
 std::string erase_space(char *argv)
@@ -21,63 +21,42 @@ std::string erase_space(char *argv)
 	return (str);
 }
 
-int insert_data(std::string& str, std::list<int>& numbers, std::list<char>& operations)
-{
-	int i = 1;
-
-	if (!isdigit(str[0]))
-		return error_msg();
-	else
-		numbers.push_back(str[0] - '0');
-	while (str[i])
-	{
-		if (isdigit(str[i]))
-			numbers.push_back(str[i] - '0');
-		else if (strchr("+*/-", str[i]))
-			operations.push_back(str[i]);
-		else
-			return error_msg();
-		i++;
-	}
-	if (numbers.size() -1  != operations.size())
-		return error_msg();
-	return 0;
-}
-
 int	operation(int res, int num, char op)
 {
+	if (op == '/' && res == 0)
+		error_msg();
 	if (op == '+')
 		return res + num;
 	else if (op == '-')
-		return res - num;
+		return num - res;
 	else if (op == '*')
 		return res * num;
-	return res / num;
+	return num / res;
 }
 
-int	calcul(std::list<int>& nums, std::list<char>& op)	
+int insert_data(std::string& str, std::stack<int>& numbers)
 {
+	int i = 0;
 	int res = 0;
-	int num;
-	char opr;
 
-	num = nums.front();
-	nums.pop_front();
-	res = operation(num, nums.front(), op.front());
-	nums.pop_front();
-	op.pop_front();
-	while (op.size() > 0)
+	while (str[i])
 	{
-		num = nums.front();
-		opr = op.front();
-		if (opr == '/' && num == 0)
+		if (isdigit(str[i]))
+			numbers.push(str[i] - '0');
+		else if (strchr("+*/-", str[i]))
 		{
-			std::cerr << "Error" << std::endl;
-			exit(1);
+			if (numbers.size() >= 2)
+			{
+				res = numbers.top();
+				numbers.pop();
+				res = operation(res, numbers.top(), str[i]);
+				numbers.pop();
+				numbers.push(res);
+			}
+			else
+				return error_msg();
 		}
-		res = operation(res, nums.front(), op.front());
-		op.pop_front();
-		nums.pop_front();
+		i++;
 	}
-	return (res);
+	return numbers.top();
 }
