@@ -97,10 +97,10 @@ void	search_exchange_rate(std::string& date, float& value, std::map<std::string,
 	}
 }
 
-int	check_date(std::string date[])
+int	check_date(std::string date)
 {
-	int day = atoi(date[2].c_str());
-	int month = atoi(date[1].c_str());
+	int day;
+	int month;
 	int year = atoi(date[0].c_str());
 
 	if (year <= 0 || year > 9999)
