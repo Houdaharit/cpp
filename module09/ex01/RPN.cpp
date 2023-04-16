@@ -1,6 +1,6 @@
 #include "RPN.hpp"
 
-int error_msg()
+void error_msg()
 {
 	std::cerr << "Error" << std::endl;
 	exit(1);
@@ -54,9 +54,11 @@ int insert_data(std::string& str, std::stack<int>& numbers)
 				numbers.push(res);
 			}
 			else
-				return error_msg();
+				error_msg();
 		}
 		i++;
 	}
+	if (numbers.size() > 1)
+		error_msg();
 	return numbers.top();
 }
