@@ -3,6 +3,7 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include <climits>
 
 class IndexOutOfBoundsException : public std::exception
 {
