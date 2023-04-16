@@ -36,7 +36,6 @@ std::string strtrim(std::string& str)
 	trim_back(str);
 	return str;
 }
-
 std::map<std::string, float> insert_data(std::map<std::string, float>& map, std::string line)
 {
 	int pos;
@@ -47,9 +46,14 @@ std::map<std::string, float> insert_data(std::map<std::string, float>& map, std:
 	pos = line.find(",");
 	date = line.substr(0, pos);
 	date = strtrim(date);
-	temp = line.substr(pos + 1, line.size());
-	temp = strtrim(temp);
-	value = atof(temp.c_str());
+	if (pos < 0)
+		value = 0;
+	else
+	{
+		temp = line.substr(pos + 1, line.size());
+		temp = strtrim(temp);
+		value = atof(temp.c_str());
+	}
 	map.insert(std::pair<std::string, float>(date, value));
 	return map;
 }
@@ -67,7 +71,7 @@ std::map<std::string, float> database_data(void)
 		exit(1);
 	}
 	while(getline(database, line))
-		insert_data(data, line, ",");
+		insert_data(data, line);
 	return (data);
 }
 
@@ -90,10 +94,7 @@ void	search_exchange_rate(std::string& date, float& value, std::map<std::string,
 			temp = it;
 			++it;
 		}
-		if (value > 0)
-			std::cout << date << " => " << value << " = " << value * temp->second << std::endl;
-		else
-			std::cerr << "Error: No value or NULL value" << std::endl;
+		std::cout << date << " => " << value << " = " << value * temp->second << std::endl;
 	}
 }
 
@@ -101,25 +102,73 @@ int	check_date(std::string date)
 {
 	int day;
 	int month;
-	int year = atoi(date[0].c_str());
+	int year;
+	int del;
+	struct tm tm;
 
-	if (year <= 0 || year > 9999)
+	if (!strptime(date.c_str(), "%Y-%m-%d", &tm))
 		return -1;
-	if (month <= 0 || month > 12)
-		return -1;
-	if (day <= 0 || day > 31)
-		return -1;
-	else if ((month == 2 || month == 4 || month == 6 || month == 9 || month == 11 ) && day == 31)
+	std::istringstream str(date);
+	str >> year >> del >> month >> del >> day;
+	if ((month == 4 || month == 6 || month == 9 || month == 11) && day == 31)
 		return -1;
 	else if (month == 2)
 	{
+		if (day > 29)
+			return -1;
 		if (year % 4 != 0 && day == 29)
 			return -1;
 	}
 	return 1;
 }
 
+int	date_value(std::string& line, std::string& date, float& value)
+{
+	int pos;
+	std::string temp;
 
+	pos = line.find("|");
+	if (pos < 0)
+		pos = line.find(",");
+	if (pos < 0)
+	{
+		std::cerr << "Error: No value." << std::endl;
+		return 0;
+	}
+	date = line.substr(0, pos);
+	date = strtrim(date);
+	if (date == "date")
+		return 0;
+	else
+	{
+		temp = line.substr(pos + 1, line.size());
+		temp = strtrim(temp);
+		remove_comma(temp);
+		if (temp == "value")
+			return 0;
+		value = atof(temp.c_str());
+	}
+	return 1;
+}
+
+int	check_value_date(std::string date, float& value)
+{
+	int check = -1;
+
+	(void)date;
+	if (value < 0)
+		std::cerr << "Error: not a positive value." << std::endl;
+	else if (value > 1000)
+		std::cerr << "Error: too large value." << std::endl;
+	else
+		check = 1;
+	if (check_date(date) == -1)
+	{
+		std::cerr << "Error: bad input => " << date << std::endl;
+		check = -1;
+	}
+	return check;
+}
 
 void	display(char *filename)
 {
@@ -146,3 +195,4 @@ void	display(char *filename)
 	if (i == 0)
 		std::cout << "Empty input file." << std::endl;
 }
+

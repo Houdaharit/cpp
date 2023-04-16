@@ -3,7 +3,9 @@
 #include <iostream>
 #include <map>
 #include <fstream>
-#include <limits.h>
+#include <climits>
+#include <cstdlib>
+#include <sstream>
 
 void    remove_comma(std::string& value);
 std::string trim_front(std::string& str);
