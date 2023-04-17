@@ -5,6 +5,7 @@ void	remove_comma(std::string& value)
 	int pos;
 
 	pos = value.find(",");
+	if (pos > 0)
 	value[pos] = '.';
 }
 
