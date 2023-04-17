@@ -8,6 +8,27 @@ void	remove_comma(std::string& value)
 	value[pos] = '.';
 }
 
+int	is_number(std::string &value)
+{
+	int i = 0;
+	int com = -1;
+
+	while(value[i])
+	{
+		if (!isdigit(value[i]) && strchr(".,", value[i]))
+		{
+			if (com == -1)
+				com = 1;
+			else
+				return 0;
+		}
+		else if (!isdigit(value[i]))
+			return 0;
+		i++;
+	}
+	return 1;
+}
+
 std::string trim_front(std::string& str)
 {
 	int i = 0;
@@ -36,7 +57,8 @@ std::string strtrim(std::string& str)
 	trim_back(str);
 	return str;
 }
-std::map<std::string, float> insert_data(std::map<std::string, float>& map, std::string line)
+
+void	insert_data(std::map<std::string, float>& map, std::string line)
 {
 	int pos;
 	std::string date;
@@ -46,16 +68,10 @@ std::map<std::string, float> insert_data(std::map<std::string, float>& map, std:
 	pos = line.find(",");
 	date = line.substr(0, pos);
 	date = strtrim(date);
-	if (pos < 0)
-		value = 0;
-	else
-	{
-		temp = line.substr(pos + 1, line.size());
-		temp = strtrim(temp);
-		value = atof(temp.c_str());
-	}
+	temp = line.substr(pos + 1, line.size());
+	temp = strtrim(temp);
+	value = atof(temp.c_str());
 	map.insert(std::pair<std::string, float>(date, value));
-	return map;
 }
 
 std::map<std::string, float> database_data(void)
@@ -75,16 +91,17 @@ std::map<std::string, float> database_data(void)
 	return (data);
 }
 
-void	search_exchange_rate(std::string& date, float& value, std::map<std::string, float>& data)
+void	search_exchange_rate(std::string& date, std::string& value, std::map<std::string, float>& data)
 {
 	std::map<std::string, float>::iterator it;
 	std::map<std::string, float>::iterator temp;
+	float value_ = atof(value.c_str());
 
 	it = data.begin();
 	while (it != data.end() && it->first != date)
 		++it;
 	if (it != data.end() && it->first == date)
-		std::cout << date << " => " << value << " = " << value * it->second << std::endl;
+		std::cout << date << " => " << value_ << " = " << value_ * it->second << std::endl;
 	else
 	{
 		it = data.begin();
@@ -94,7 +111,7 @@ void	search_exchange_rate(std::string& date, float& value, std::map<std::string,
 			temp = it;
 			++it;
 		}
-		std::cout << date << " => " << value << " = " << value * temp->second << std::endl;
+		std::cout << date << " => " << value_ << " = " << value_ * temp->second << std::endl;
 	}
 }
 
@@ -122,10 +139,9 @@ int	check_date(std::string date)
 	return 1;
 }
 
-int	date_value(std::string& line, std::string& date, float& value)
+int	date_value(std::string& line, std::string& date, std::string& value)
 {
 	int pos;
-	std::string temp;
 
 	pos = line.find("|");
 	if (pos < 0)
@@ -141,27 +157,35 @@ int	date_value(std::string& line, std::string& date, float& value)
 		return 0;
 	else
 	{
-		temp = line.substr(pos + 1, line.size());
-		temp = strtrim(temp);
-		remove_comma(temp);
-		if (temp == "value")
+		value = line.substr(pos + 1, line.size());
+		value = strtrim(value);
+		remove_comma(value);
+		if (value == "value")
 			return 0;
-		value = atof(temp.c_str());
 	}
 	return 1;
 }
 
-int	check_value_date(std::string date, float& value)
+int	check_value_date(std::string date, std::string& value)
 {
 	int check = -1;
+	int value_;
 
-	(void)date;
-	if (value < 0)
-		std::cerr << "Error: not a positive value." << std::endl;
-	else if (value > 1000)
-		std::cerr << "Error: too large value." << std::endl;
+	if (is_number(value))
+	{
+		value_ = atof(value.c_str());
+		if (value_ < 0)
+			std::cerr << "Error: not a positive value." << std::endl;
+		else if (value_ > 1000)
+			std::cerr << "Error: too large value." << std::endl;
+		else
+			check = 1;
+	}
 	else
-		check = 1;
+	{
+		std::cerr << "Error: Bad input => " << value << std::endl;
+		check = -1;
+	}
 	if (check_date(date) == -1)
 	{
 		std::cerr << "Error: bad input => " << date << std::endl;
@@ -175,7 +199,7 @@ void	display(char *filename)
 	std::ifstream file;
 	std::string line;
 	std::string date;
-	float value;
+	std::string value;
 	int i = 0;
 
 	file.open(filename);
