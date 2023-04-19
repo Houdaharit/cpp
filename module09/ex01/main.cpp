@@ -8,7 +8,7 @@ int main(int argc, char **argv)
 
 	if (argc == 2)
 	{
-		str = erase_space(argv[1]);
+		std::string str(argv[1]);
 		res = insert_data(str, numbers);
 		std::cout << res << std::endl;
 	}

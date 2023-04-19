@@ -6,21 +6,6 @@ void error_msg()
 	exit(1);
 }
 
-std::string erase_space(char *argv)
-{
-	int pos; 
-
-	std::string str(argv);
-	std::string::iterator it = str.begin();
-
-	while(str.find(" ") != std::string::npos)
-	{
-		pos = str.find(" ");
-		str.erase(it + pos);
-	}
-	return (str);
-}
-
 int	operation(int res, int num, char op)
 {
 	if (op == '/' && res == 0)
