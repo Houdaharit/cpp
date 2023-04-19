@@ -4,6 +4,7 @@
 #include <vector>
 #include <deque>
 #include <sys/time.h>
+#include <cstdlib>
 
 void merge_insert_v(std::vector<int>& arr, std::vector<int>& temp, int l, int r, int threshold);
 void merge_v(std::vector<int>& arr, std::vector<int>& temp, int l, int m, int r);
