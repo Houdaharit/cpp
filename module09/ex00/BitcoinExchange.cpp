@@ -6,7 +6,7 @@ void	remove_comma(std::string& value)
 
 	pos = value.find(",");
 	if (pos > 0)
-	value[pos] = '.';
+		value[pos] = '.';
 }
 
 int	is_number(std::string &value)
@@ -30,6 +30,20 @@ int	is_number(std::string &value)
 	return 1;
 }
 
+int is_int(std::string& value)
+{
+	int i = 0;
+
+	while(value[i])
+	{
+		if (!isdigit(value[i]))
+			return 0;
+		i++;
+	}
+	return 1;
+
+}
+
 std::string trim_front(std::string& str)
 {
 	int i = 0;
@@ -41,14 +55,15 @@ std::string trim_front(std::string& str)
 	return str;
 }
 
-std::string trim_back(std::string &str)
+std::string trim_back(std::string& str)
 {
-	int i = 0;
+	char whitespace[] = " \n\r\t\f\v";
+	int i = str.size() - 1;
 
-	while (str[i] && (str[i] != 32 && str[i] != '\t' && str[i] != '\n'))
-		i++;
-	if (str[i])
-		str = str.substr(0, i);
+	while (i > 0 && strchr(whitespace, str[i]))
+		i--;
+	if (!strchr(whitespace, str[i]))
+		str =  str.substr(0, i + 1);
 	return str;
 }
 
@@ -89,6 +104,7 @@ std::map<std::string, float> database_data(void)
 	}
 	while(getline(database, line))
 		insert_data(data, line);
+	database.close();
 	return (data);
 }
 
@@ -116,25 +132,36 @@ void	search_exchange_rate(std::string& date, std::string& value, std::map<std::s
 	}
 }
 
+void date_(std::string& date, std::string& str)
+{
+	int pos = date.find("-");
+	str = date.substr(0, pos);
+	date = date.substr(pos + 1, date.size());
+}
+
 int	check_date(std::string date)
 {
-	int day;
-	int month;
-	int year;
-	int del;
-	struct tm tm;
+	std::string day;
+	std::string month;
+	std::string year;
 
-	if (!strptime(date.c_str(), "%Y-%m-%d", &tm))
+	date_(date, year);
+	date_(date, month);
+	date_(date, day);
+	if (!is_int(year) || !is_int(month) || !is_int(day))
 		return -1;
-	std::istringstream str(date);
-	str >> year >> del >> month >> del >> day;
-	if ((month == 4 || month == 6 || month == 9 || month == 11) && day == 31)
+	int m = atoi(month.c_str());
+	int d = atoi(day.c_str());
+	int y = atoi(year.c_str());
+	if (y <= 0 || y > 9999 || m <= 0 || m > 12 || d <= 0 || d > 31)
 		return -1;
-	else if (month == 2)
+	if ((m == 4 || m == 6 || m == 9 || m == 11) && d == 31)
+		return -1;
+	else if (m == 2)
 	{
-		if (day > 29)
+		if (d > 29)
 			return -1;
-		if (year % 4 != 0 && day == 29)
+		if (y % 4 != 0 && d == 29)
 			return -1;
 	}
 	return 1;
@@ -149,7 +176,10 @@ int	date_value(std::string& line, std::string& date, std::string& value)
 		pos = line.find(",");
 	if (pos < 0)
 	{
-		std::cerr << "Error: No value." << std::endl;
+		date = line;
+		if (check_date(date) == -1)
+			std::cerr << "Error: bad input => " << date << std::endl;
+		std::cerr << "Error: No value. => " << date << std::endl;
 		return 0;
 	}
 	date = line.substr(0, pos);
@@ -219,5 +249,6 @@ void	display(char *filename)
 	}
 	if (i == 0)
 		std::cout << "Empty input file." << std::endl;
+	file.close();
 }
 

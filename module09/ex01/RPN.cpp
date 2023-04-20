@@ -47,3 +47,17 @@ int insert_data(std::string& str, std::stack<int>& numbers)
 		error_msg();
 	return numbers.top();
 }
+
+int check_input(std::string& str)
+{
+	char whitespace[] = " \n\r\t\f\v";
+
+	int i = 0;
+	while (str[i])
+	{
+		if (!strchr(whitespace, str[i]) && !isdigit(str[i]) && !strchr("+*/-", str[i]))
+			return 0;
+		i++;
+	}
+	return 1;
+}
