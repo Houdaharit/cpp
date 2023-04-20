@@ -167,6 +167,38 @@ int	check_date(std::string date)
 	return 1;
 }
 
+int	check_value_date(std::string date, std::string& value)
+{
+	int check = 1;
+	int value_;
+
+	if (is_number(value))
+	{
+		value_ = atof(value.c_str());
+		if (value_ < 0)
+		{
+			std::cerr << "Error: not a positive value." << std::endl;
+			check = -1;
+		}
+		else if (value_ > 1000)
+		{
+			std::cerr << "Error: too large value." << std::endl;
+			check = -1;
+		}
+	}
+	else
+	{
+		std::cerr << "Error: Bad input => " << value << std::endl;
+		check = -1;
+	}
+	if (check_date(date) == -1)
+	{
+		std::cerr << "Error: bad input => " << date << std::endl;
+		check = -1;
+	}
+	return (check);
+}
+
 int	date_value(std::string& line, std::string& date, std::string& value)
 {
 	int pos;
@@ -180,50 +212,23 @@ int	date_value(std::string& line, std::string& date, std::string& value)
 		if (check_date(date) == -1)
 			std::cerr << "Error: bad input => " << date << std::endl;
 		std::cerr << "Error: No value. => " << date << std::endl;
-		return 0;
+		return -1;
 	}
 	date = line.substr(0, pos);
 	date = strtrim(date);
 	if (date == "date")
-		return 0;
+		return -1;
 	else
 	{
 		value = line.substr(pos + 1, line.size());
 		value = strtrim(value);
 		remove_comma(value);
 		if (value == "value")
-			return 0;
+			return -1;
 	}
-	return 1;
+	return check_value_date(date, value);
 }
 
-int	check_value_date(std::string date, std::string& value)
-{
-	int check = -1;
-	int value_;
-
-	if (is_number(value))
-	{
-		value_ = atof(value.c_str());
-		if (value_ < 0)
-			std::cerr << "Error: not a positive value." << std::endl;
-		else if (value_ > 1000)
-			std::cerr << "Error: too large value." << std::endl;
-		else
-			check = 1;
-	}
-	else
-	{
-		std::cerr << "Error: Bad input => " << value << std::endl;
-		check = -1;
-	}
-	if (check_date(date) == -1)
-	{
-		std::cerr << "Error: bad input => " << date << std::endl;
-		check = -1;
-	}
-	return check;
-}
 
 void	display(char *filename)
 {
@@ -242,7 +247,7 @@ void	display(char *filename)
 	std::map<std::string, float> data = database_data();
 	while(getline(file, line))
 	{
-		if (!date_value(line, date, value) || check_value_date(date, value) == -1)
+		if (date_value(line, date, value) == -1)
 			continue;
 		search_exchange_rate(date, value, data);
 		i++;

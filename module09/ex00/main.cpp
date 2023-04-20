@@ -7,6 +7,11 @@ int main(int argc, char **argv)
 		std::cerr << "Error: cannot open file" << std::endl;
 		return 1;
 	}
+	else if (argc > 2)
+	{
+		std::cerr << "Error: too many files" << std::endl;
+		return 1;
+	}
 	display(argv[1]);
 	return 0;
 }
